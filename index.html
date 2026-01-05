@@ -8,7 +8,7 @@
     <!-- SEO Meta Tags -->
     <title>مساعدك الذكي - حوّل واتساب، فيسبوك، وإنستجرام إلى موظف مبيعات يعمل 24/7</title>
     <meta name="description"
-        content="خدمة مساعدك الذكي - أجب تلقائياً على أسئلة العملاء عبر واتساب، فيسبوك، وإنستجرام. احجز المواعيد، وبع المنتجات باللهجة اليمنية والسعودية. رد فوري 5 ثواني، يعمل 24/7 بدون توقف.">
+        content="خدمة مساعدك الذكي - أجب تلقائياً على أسئلة العملاء عبر واتساب، فيسبوك، وإنستجرام. احجز المواعيد، وبع المنتجات باللغة العربية وبأي لهجة. رد فوري 5 ثواني، يعمل 24/7 بدون توقف.">
     <meta name="keywords"
         content="بوت واتساب, بوت فيسبوك, بوت إنستجرام, واتساب للأعمال, ذكاء اصطناعي, خدمة عملاء, مبيعات تلقائية, اليمن, السعودية">
 
@@ -19,7 +19,7 @@
     <!-- Open Graph -->
     <meta property="og:title" content="مساعدك الذكي - حوّل واتساب، فيسبوك، وإنستجرام إلى موظف مبيعات يعمل 24/7">
     <meta property="og:description"
-        content="خدمة مساعدك الذكي - أجب تلقائياً على أسئلة العملاء عبر واتساب، فيسبوك، وإنستجرام. احجز المواعيد، وبع المنتجات باللهجة اليمنية والسعودية">
+        content="بوت واتساب, بوت فيسبوك, بوت إنستجرام, واتساب للأعمال, ذكاء اصطناعي, خدمة عملاء, مبيعات تلقائية, اليمن, السعودية">
     <meta property="og:type" content="website">
 
     <!-- Canonical -->
@@ -101,7 +101,7 @@
                         </h1>
 
                         <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                            أجب تلقائياً على أسئلة العملاء، احجز المواعيد، وبع المنتجات باللهجة اليمنية أو السعودية.
+                            أجب تلقائياً على أسئلة العملاء، احجز المواعيد، وبع المنتجات باللغة العربية وبأي لهجة.
                             يعمل 24/7 بدون توقف.
                         </p>
 
@@ -138,6 +138,43 @@
                                 </div>
                                 <!-- Custom Chat Interface -->
                                 <div class="flex flex-col h-[600px] bg-slate-50 relative" id="chat-container">
+                                    <!-- Start Screen Overlay -->
+                                    <div id="chat-start-screen"
+                                        class="absolute inset-0 z-20 bg-slate-50 flex flex-col items-center justify-center p-6 text-center transition-all duration-300">
+
+                                        <!-- Decorative Background Shapes -->
+                                        <div class="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
+                                            <div
+                                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl">
+                                            </div>
+                                            <div
+                                                class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl">
+                                            </div>
+                                        </div>
+
+                                        <!-- Icon -->
+                                        <div
+                                            class="relative w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center mb-6 ring-4 ring-blue-50">
+                                            <i class="ri-robot-2-line text-4xl text-slate-800"></i>
+                                            <div
+                                                class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-white rounded-full">
+                                            </div>
+                                        </div>
+
+                                        <!-- Text -->
+                                        <h3 class="text-2xl font-bold text-slate-900 mb-2">منصة ذكاء اصطناعي</h3>
+                                        <p class="text-slate-500 max-w-xs mb-8 leading-relaxed">لأتمتة التفاعلات وتعزيز
+                                            نمو أعمالك على واتساب وفيسبوك</p>
+
+                                        <!-- CTA Button -->
+                                        <button id="start-chat-btn"
+                                            class="group relative inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 text-white text-lg font-medium rounded-xl hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/30">
+                                            <i class="ri-chat-1-line group-hover:scale-110 transition-transform"></i>
+                                            ابدأ محادثة جديدة
+                                        </button>
+
+                                        <p class="mt-6 text-xs text-slate-400">مدعوم بواسطة مساعدك الذكي AI</p>
+                                    </div>
                                     <!-- Messages Area -->
                                     <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth">
                                         <!-- Welcome Message -->
@@ -264,7 +301,473 @@
                     </div>
                 </div>
             </section>
-            <section class="py-24 bg-white">
+
+            <!-- Industry Solutions Section -->
+            <section class="py-24 bg-white relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">حلول ذكية تناسب أي مجال</h2>
+                        <p class="text-lg text-slate-500 max-w-2xl mx-auto">مساعدك الذكي ليس مجرد بوت، هو موظف متخصص
+                            يمكن تشكيله ليناسب احتياجات قطاعك بدقة.</p>
+                    </div>
+
+                    <!-- Dynamic Tabs -->
+                    <div class="flex flex-wrap justify-center gap-3 mb-12" id="industry-tabs">
+                        <button
+                            class="industry-tab px-6 py-3 rounded-full border border-blue-600 bg-blue-600 text-white font-medium transition-all"
+                            data-target="education">التعليم والمدارس</button>
+                        <button
+                            class="industry-tab px-6 py-3 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-blue-600 font-medium transition-all"
+                            data-target="tourism">مكاتب السياحة والسفر</button>
+                        <button
+                            class="industry-tab px-6 py-3 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-blue-600 font-medium transition-all"
+                            data-target="customer-service">التواصل مع العملاء</button>
+                        <button
+                            class="industry-tab px-6 py-3 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-blue-600 font-medium transition-all"
+                            data-target="ecommerce">التجارة الإلكترونية</button>
+                        <button
+                            class="industry-tab px-6 py-3 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-blue-600 font-medium transition-all"
+                            data-target="health">الصحة والمستشفيات</button>
+                        <button
+                            class="industry-tab px-6 py-3 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-blue-600 font-medium transition-all"
+                            data-target="real-estate">العقارات</button>
+                    </div>
+
+                    <!-- Content Area -->
+                    <div class="relative min-h-[500px]">
+                        <!-- Tab Content: Education -->
+                        <div id="education"
+                            class="industry-content grid lg:grid-cols-2 gap-12 items-center animate-fade-in">
+                            <div class="order-2 lg:order-1">
+                                <h3 class="text-3xl font-bold text-slate-900 mb-4">التعليم والمدارس</h3>
+                                <p class="text-lg text-slate-600 mb-8 leading-relaxed">حوّل واتساب مدرستك إلى مركز قبول
+                                    وتسجيل متكامل يعمل 24/7. دع الذكاء الاصطناعي يجيب على آلاف الأسئلة المكررة عن الرسوم
+                                    والمناهج، ليتفرغ فريقك للعملية التربوية.</p>
+
+                                <div class="bg-blue-50/50 rounded-2xl p-6 mb-8 border border-blue-100">
+                                    <h4 class="font-bold text-blue-800 mb-2 flex items-center gap-2">
+                                        <i class="ri-bar-chart-box-line text-xl"></i> التأثير المباشر
+                                    </h4>
+                                    <p class="text-blue-900 font-medium">توفير 70% من وقت السكرتارية وتقليل طوابير
+                                        الانتظار في مواسم التسجيل.</p>
+                                </div>
+                            </div>
+                            <div class="order-1 lg:order-2 bg-slate-50 rounded-3xl p-8 border border-slate-100">
+                                <h4 class="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                                    <i class="ri-checkbox-circle-fill text-blue-600 text-xl"></i> ماذا يقدم البوت؟
+                                </h4>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> إرسال نتائج الاختبارات
+                                        والجداول الدراسية</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> الرد الآلي على استفسارات
+                                        الرسوم والخصومات</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> تسجيل الطلاب الجدد وجمع
+                                        المستندات</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> إرسال تعاميم الغياب والحضور
+                                        للأهالي</li>
+                                </ul>
+
+                                <h4 class="font-bold text-slate-900 mb-4 text-sm">سيناريوهات جاهزة</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">كم
+                                        رسوم الصف الأول؟</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">متى
+                                        يبدأ التسجيل؟</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">رابط
+                                        الحصة الافتراضية</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content: Tourism -->
+                        <div id="tourism"
+                            class="industry-content hidden grid lg:grid-cols-2 gap-12 items-center animate-fade-in">
+                            <div class="order-2 lg:order-1">
+                                <h3 class="text-3xl font-bold text-slate-900 mb-4">مكاتب السياحة والسفر</h3>
+                                <p class="text-lg text-slate-600 mb-8 leading-relaxed">موظف حجوزات لا ينام. استقبل طلبات
+                                    السفر، اعرض صور الفنادق والوجهات السياحية، وأغلق الصفقات حتى في أوقات الإجازات
+                                    الرسمية.</p>
+
+                                <div class="bg-blue-50/50 rounded-2xl p-6 mb-8 border border-blue-100">
+                                    <h4 class="font-bold text-blue-800 mb-2 flex items-center gap-2">
+                                        <i class="ri-plane-line text-xl"></i> التأثير المباشر
+                                    </h4>
+                                    <p class="text-blue-900 font-medium">زيادة المبيعات خارج أوقات الدوام بنسبة 40%
+                                        واستجابة فورية للعملاء المستعجلين.</p>
+                                </div>
+                            </div>
+                            <div class="order-1 lg:order-2 bg-slate-50 rounded-3xl p-8 border border-slate-100">
+                                <h4 class="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                                    <i class="ri-checkbox-circle-fill text-blue-600 text-xl"></i> ماذا يقدم البوت؟
+                                </h4>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> عرض باقات العطلات مع الصور
+                                        والأسعار</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> توضيح متطلبات التأشيرات
+                                        (الفيزا) لكل دولة</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> متابعة حالة الحجز وإرسال
+                                        التذاكر PDF</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> دعم المسافرين أثناء رحلاتهم
+                                    </li>
+                                </ul>
+
+                                <h4 class="font-bold text-slate-900 mb-4 text-sm">سيناريوهات جاهزة</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">عروض
+                                        شهر العسل</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">حجز
+                                        طيران للقاهرة</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">فنادق
+                                        مكة</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content: Customer Service -->
+                        <div id="customer-service"
+                            class="industry-content hidden grid lg:grid-cols-2 gap-12 items-center animate-fade-in">
+                            <div class="order-2 lg:order-1">
+                                <h3 class="text-3xl font-bold text-slate-900 mb-4">التواصل مع العملاء</h3>
+                                <p class="text-lg text-slate-600 mb-8 leading-relaxed">تخلص من عبارة "جميع موظفينا
+                                    مشغولون الآن". قدم دعماً فنياً فورياً وعالج الشكاوى بسرعة، مع إمكانية تحويل الحالات
+                                    المعقدة للموظف البشري بسلاسة.</p>
+
+                                <div class="bg-blue-50/50 rounded-2xl p-6 mb-8 border border-blue-100">
+                                    <h4 class="font-bold text-blue-800 mb-2 flex items-center gap-2">
+                                        <i class="ri-customer-service-2-line text-xl"></i> التأثير المباشر
+                                    </h4>
+                                    <p class="text-blue-900 font-medium">تقليل زمن الاستجابة إلى (0) ثانية، ورفع معدل
+                                        رضا العملاء.</p>
+                                </div>
+                            </div>
+                            <div class="order-1 lg:order-2 bg-slate-50 rounded-3xl p-8 border border-slate-100">
+                                <h4 class="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                                    <i class="ri-checkbox-circle-fill text-blue-600 text-xl"></i> ماذا يقدم البوت؟
+                                </h4>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> حل المشاكل التقنية الشائعة
+                                        خطوة بخطوة</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> توجيه العميل للقسم المختص
+                                        تلقائياً</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> فتح تذاكر دعم ومتابعة حالتها
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> جمع التقييمات والملاحظات بعد
+                                        الخدمة</li>
+                                </ul>
+
+                                <h4 class="font-bold text-slate-900 mb-4 text-sm">سيناريوهات جاهزة</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">نسيت
+                                        كلمة المرور</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">تتبع
+                                        مشكلتي</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">طلب
+                                        التحدث لموظف</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content: E-commerce -->
+                        <div id="ecommerce"
+                            class="industry-content hidden grid lg:grid-cols-2 gap-12 items-center animate-fade-in">
+                            <div class="order-2 lg:order-1">
+                                <h3 class="text-3xl font-bold text-slate-900 mb-4">التجارة الإلكترونية</h3>
+                                <p class="text-lg text-slate-600 mb-8 leading-relaxed">مساعد مبيعات ذكي داخل واتساب.
+                                    يساعد عملاءك في اختيار المنتج المناسب، يتابع السلات المتروكة، ويجيب على أسئلة "متى
+                                    يوصل طلبي؟" تلقائياً.</p>
+                                <div class="bg-blue-50/50 rounded-2xl p-6 mb-8 border border-blue-100">
+                                    <h4 class="font-bold text-blue-800 mb-2 flex items-center gap-2">
+                                        <i class="ri-shopping-cart-2-line text-xl"></i> التأثير المباشر
+                                    </h4>
+                                    <p class="text-blue-900 font-medium">استعادة 25% من السلات المتروكة وتقليل استفسارات
+                                        الشحن المتكررة.</p>
+                                </div>
+                            </div>
+                            <div class="order-1 lg:order-2 bg-slate-50 rounded-3xl p-8 border border-slate-100">
+                                <h4 class="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                                    <i class="ri-checkbox-circle-fill text-blue-600 text-xl"></i> ماذا يقدم البوت؟
+                                </h4>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> تتبع حالة الطلبات برقم الجوال
+                                        أو الطلب</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> اقتراح منتجات بديلة أو مكملة
+                                        (Upselling)</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> توضيح سياسات الاستبدال
+                                        والاسترجاع</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> إرسال كوبونات وتخفيضات شخصية
+                                    </li>
+                                </ul>
+
+                                <h4 class="font-bold text-slate-900 mb-4 text-sm">سيناريوهات جاهزة</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">وين
+                                        طلبي؟</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">عندكم
+                                        مقاس لارج؟</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">طريقة
+                                        الارجاع</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content: Health -->
+                        <div id="health"
+                            class="industry-content hidden grid lg:grid-cols-2 gap-12 items-center animate-fade-in">
+                            <div class="order-2 lg:order-1">
+                                <h3 class="text-3xl font-bold text-slate-900 mb-4">الصحة والمستشفيات</h3>
+                                <p class="text-lg text-slate-600 mb-8 leading-relaxed">نظّم مواعيد عيادتك بكفاءة. دع
+                                    البوت يؤكد المواعيد مع المرضى قبل يوم، ويرسل تعليمات التحضير للفحص، ويجيب على
+                                    استفسارات التأمين.</p>
+                                <div class="bg-blue-50/50 rounded-2xl p-6 mb-8 border border-blue-100">
+                                    <h4 class="font-bold text-blue-800 mb-2 flex items-center gap-2">
+                                        <i class="ri-hospital-line text-xl"></i> التأثير المباشر
+                                    </h4>
+                                    <p class="text-blue-900 font-medium">تقليل نسبة التغيب عن المواعيد (No-show) بـ 50%
+                                        وتحسين تجربة المريض.</p>
+                                </div>
+                            </div>
+                            <div class="order-1 lg:order-2 bg-slate-50 rounded-3xl p-8 border border-slate-100">
+                                <h4 class="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                                    <i class="ri-checkbox-circle-fill text-blue-600 text-xl"></i> ماذا يقدم البوت؟
+                                </h4>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> حجز وجدولة المواعيد تلقائياً
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> دليل الأطباء والتخصصات
+                                        المتاحة</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> الرد على استفسارات شركات
+                                        التأمين المقبولة</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> نصائح طبية عامة وتعليمات ما
+                                        قبل العمليات</li>
+                                </ul>
+
+                                <h4 class="font-bold text-slate-900 mb-4 text-sm">سيناريوهات جاهزة</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">حجز
+                                        جلدية</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">دوام
+                                        دكتور أحمد</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">تأمين
+                                        التعاونية</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content: Real Estate -->
+                        <div id="real-estate"
+                            class="industry-content hidden grid lg:grid-cols-2 gap-12 items-center animate-fade-in">
+                            <div class="order-2 lg:order-1">
+                                <h3 class="text-3xl font-bold text-slate-900 mb-4">العقارات</h3>
+                                <p class="text-lg text-slate-600 mb-8 leading-relaxed">اعرض وحداتك العقارية بذكاء. يرسل
+                                    البوت صور الشقق، المواقع، والأسعار للعملاء المهتمين، ويقوم بفرز العملاء الجادين
+                                    لربطهم بوكلائك.</p>
+                                <div class="bg-blue-50/50 rounded-2xl p-6 mb-8 border border-blue-100">
+                                    <h4 class="font-bold text-blue-800 mb-2 flex items-center gap-2">
+                                        <i class="ri-building-line text-xl"></i> التأثير المباشر
+                                    </h4>
+                                    <p class="text-blue-900 font-medium">تأهيل العملاء تلقائياً وتوفير وقت الوكلاء
+                                        للعقود والزيارات الفعلية فقط.</p>
+                                </div>
+                            </div>
+                            <div class="order-1 lg:order-2 bg-slate-50 rounded-3xl p-8 border border-slate-100">
+                                <h4 class="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                                    <i class="ri-checkbox-circle-fill text-blue-600 text-xl"></i> ماذا يقدم البوت؟
+                                </h4>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> عرض الكتالوج العقاري مع الصور
+                                        والأسعار</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> إرسال الموقع الجغرافي
+                                        (Location) للعقار</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> جدولة زيارات المعاينة
+                                        الميدانية</li>
+                                    <li class="flex items-start gap-3 text-slate-700"><i
+                                            class="ri-check-line text-green-500 mt-1"></i> الرد على استفسارات التمويل
+                                        والدفعات</li>
+                                </ul>
+
+                                <h4 class="font-bold text-slate-900 mb-4 text-sm">سيناريوهات جاهزة</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">شقق
+                                        للإيجار شمال الرياض</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">كم
+                                        السعر؟</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600">حجز
+                                        موعد معاينة</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="py-24 bg-slate-50 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-6">
+                    <!-- Header -->
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">شهادات العملاء</h2>
+                        <p class="text-lg text-slate-500 max-w-2xl mx-auto">ماذا يقول عملاؤنا عن تجربتهم</p>
+                    </div>
+
+                    <!-- Testimonials Grid -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                        <!-- Card 1 -->
+                        <div
+                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
+                            <p class="text-slate-600 mb-6 leading-relaxed">"الفكرة فكرتي بس حسام سرقها"</p>
+                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">حسين الكاف</h4>
+                                <p class="text-xs text-slate-400 mt-1">سيد الرجال</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div
+                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
+                            <p class="text-slate-600 mb-6 leading-relaxed">"لقد سرقت الفكرة من حسين الكاف"</p>
+                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">حسام قع رجال</h4>
+                                <p class="text-xs text-slate-400 mt-1">عبد يعمل كأجير وعادة يحاول يقع رجال</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div
+                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
+                            <p class="text-slate-600 mb-6 leading-relaxed">"كنت اعتقد ان الفكرة رائعة ولكنها طلعت مسروقة
+                                حسام سارق كبير</p>
+                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">يوسف ابو الرموش</h4>
+                                <p class="text-xs text-slate-400 mt-1">طفل عبدالرحمن المدلل</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div
+                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
+                            <p class="text-slate-600 mb-6 leading-relaxed">"قبل كان العملاء يتركون المحادثة لما نتأخر في
+                                الرد. الآن المحادثات تكمل لنهاية الطلب. فرق واضح"</p>
+                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">عبدالله النعيمي</h4>
+                                <p class="text-xs text-slate-400 mt-1">شركة صيانة تكييف</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div
+                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
+                            <p class="text-slate-600 mb-6 leading-relaxed">"أهم شي عندي إن العميل يحس بالاهتمام. المساعد
+                                الذكي يسأل الأسئلة الصحيحة ويوجه العميل للمنتج المناسب"</p>
+                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">سارة القحطاني</h4>
+                                <p class="text-xs text-slate-400 mt-1">متجر عبايات أونلاين</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div
+                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
+                            <p class="text-slate-600 mb-6 leading-relaxed">"صراحة استغربت من دقة الردود. يفهم حتى لو
+                                العميل كتب بالعامية السعودية ويرد بنفس الأسلوب. مريح جداً"</p>
+                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">فاطمة الدوسري</h4>
+                                <p class="text-xs text-slate-400 mt-1">مطعم وجبات صحية</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Box -->
+                    <div class="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100">
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x md:divide-x-reverse divide-slate-100 text-center gap-8 md:gap-0">
+                            <div class="p-2">
+                                <span class="block text-4xl md:text-5xl font-bold text-blue-600 mb-2"
+                                    dir="ltr">+2000</span>
+                                <span class="text-slate-500 font-medium text-lg">عميل</span>
+                            </div>
+                            <div class="p-2">
+                                <span class="block text-4xl md:text-5xl font-bold text-lime-500 mb-2"
+                                    dir="ltr">95%</span>
+                                <span class="text-slate-500 font-medium text-lg">معدل الرضا</span>
+                            </div>
+                            <div class="p-2">
+                                <span class="block text-4xl md:text-5xl font-bold text-slate-800 mb-2"
+                                    dir="ltr">24/7</span>
+                                <span class="text-slate-500 font-medium text-lg">دعم متواصل</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section class="py-24 bg-white relative overflow-hidden">
                 <div class="max-w-7xl mx-auto px-6">
                     <div class="text-center mb-10 md:mb-16">
                         <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6">خطط الأسعار الواضحة</h2>
@@ -785,6 +1288,17 @@
             const chatMessages = document.getElementById('chat-messages');
             const typingIndicator = document.getElementById('typing-indicator');
 
+            const chatStartScreen = document.getElementById('chat-start-screen');
+            const startChatBtn = document.getElementById('start-chat-btn');
+
+            startChatBtn.addEventListener('click', () => {
+                chatStartScreen.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    chatStartScreen.style.display = 'none';
+                    chatInput.focus();
+                }, 300);
+            });
+
             // Generate or retrieve session ID
             let sessionId = localStorage.getItem('chatSessionId');
             if (!sessionId) {
@@ -868,6 +1382,28 @@
                     const errorMessage = `خطأ: ${error.message}`;
                     appendMessage(errorMessage, false);
                 }
+            });
+        });
+
+        // Industry Tabs Logic
+        document.querySelectorAll('.industry-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Deactivate all tabs
+                document.querySelectorAll('.industry-tab').forEach(t => {
+                    t.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+                    t.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                });
+
+                // Activate clicked tab
+                tab.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                tab.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+
+                // Switch Content
+                const targetId = tab.getAttribute('data-target');
+                document.querySelectorAll('.industry-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(targetId).classList.remove('hidden');
             });
         });
 
