@@ -27,7 +27,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css">
@@ -37,8 +37,8 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Cairo', 'sans-serif'],
-                        cairo: ['Cairo', 'sans-serif'],
+                        sans: ['IBM Plex Sans Arabic', 'sans-serif'],
+                        cairo: ['IBM Plex Sans Arabic', 'sans-serif'], // Keep cairo alias for compatibility if needed, but mapped to new font
                     },
                     colors: {
                         primary: {
@@ -62,7 +62,7 @@
 
 <body>
     <div id="root">
-        <div class="min-h-screen bg-white overflow-x-hidden font-sans">
+        <div class="min-h-screen bg-white overflow-x-hidden" style="font-family: 'IBM Plex Sans Arabic', sans-serif;">
             <section class="relative pt-6 pb-20 lg:pt-8 bg-gradient-to-b from-slate-50 via-white to-white">
                 <nav class="relative z-50 flex justify-between items-center px-6 md:px-12 py-4 max-w-7xl mx-auto">
                     <div class="flex items-center gap-2 md:gap-3">
@@ -101,7 +101,7 @@
                         </h1>
 
                         <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                            أجب تلقائياً على أسئلة العملاء، احجز المواعيد، وبع المنتجات باللغة العربية وبأي لهجة.
+                            أجب تلقائياً على أسئلة العملاء، احجز المواعيد، وبع المنتجات باللغة العربية وبأي لهجة عربية.
                             يعمل 24/7 بدون توقف.
                         </p>
 
@@ -641,704 +641,515 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Testimonials Section -->
-            <section class="py-24 bg-slate-50 relative overflow-hidden">
-                <div class="max-w-7xl mx-auto px-6">
-                    <!-- Header -->
-                    <div class="text-center mb-16">
-                        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">شهادات العملاء</h2>
-                        <p class="text-lg text-slate-500 max-w-2xl mx-auto">ماذا يقول عملاؤنا عن تجربتهم</p>
-                    </div>
-
-                    <!-- Testimonials Grid -->
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                        <!-- Card 1 -->
-                        <div
-                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
-                            <p class="text-slate-600 mb-6 leading-relaxed">"الفكرة فكرتي بس حسام سرقها"</p>
-                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
-                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-10 md:mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6">خطط الأسعار الواضحة</h2>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">اختر الخطة المناسبة لعملك. لا توجد
+                        رسوم خفية،
+                        كل شيء واضح وشفاف</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto" id="pricing">
+                    <div
+                        class="relative bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200">
+                        <div class="p-8 ">
+                            <div class="text-center mb-8">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-2">البداية</h3>
+                                <p class="text-base text-slate-500 mb-6">الأفضل للأعمال الجديدة</p>
+                                <div class="mb-6"><span class="text-4xl font-bold text-slate-900">$29</span><span
+                                        class="text-lg text-slate-500 mr-2">/ شهرياً</span></div>
+                                <div class="bg-blue-50 rounded-xl p-3 text-blue-700 font-medium text-sm">
+                                    مثالي لـ: عيادات الأسنان، المحلات الصغيرة
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">حسين الكاف</h4>
-                                <p class="text-xs text-slate-400 mt-1">سيد الرجال</p>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1"><i
+                                            class="ri-check-line text-xl text-blue-600"></i></div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-slate-800">رسائل بنظام الدفع حسب
+                                            الاستخدام</p>
+                                        <p class="text-xs text-slate-500">$0.03 لكل رسالة</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1"><i
+                                            class="ri-check-line text-xl text-blue-600"></i></div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-slate-800">رسوم الإعداد</p>
+                                        <p class="text-xs text-slate-500">$100 لمرة واحدة</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1"><i
+                                            class="ri-check-line text-xl text-blue-600"></i></div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-slate-800">قاعدة معرفية</p>
+                                        <p class="text-xs text-slate-500">ملف PDF واحد</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <!-- Card 2 -->
-                        <div
-                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
-                            <p class="text-slate-600 mb-6 leading-relaxed">"لقد سرقت الفكرة من حسين الكاف"</p>
-                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
-                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">حسام قع رجال</h4>
-                                <p class="text-xs text-slate-400 mt-1">عبد يعمل كأجير وعادة يحاول يقع رجال</p>
-                            </div>
-                        </div>
-
-                        <!-- Card 3 -->
-                        <div
-                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
-                            <p class="text-slate-600 mb-6 leading-relaxed">"كنت اعتقد ان الفكرة رائعة ولكنها طلعت مسروقة
-                                حسام سارق كبير</p>
-                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
-                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">يوسف ابو الرموش</h4>
-                                <p class="text-xs text-slate-400 mt-1">طفل عبدالرحمن المدلل</p>
-                            </div>
-                        </div>
-
-                        <!-- Card 4 -->
-                        <div
-                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
-                            <p class="text-slate-600 mb-6 leading-relaxed">"قبل كان العملاء يتركون المحادثة لما نتأخر في
-                                الرد. الآن المحادثات تكمل لنهاية الطلب. فرق واضح"</p>
-                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
-                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">عبدالله النعيمي</h4>
-                                <p class="text-xs text-slate-400 mt-1">شركة صيانة تكييف</p>
-                            </div>
-                        </div>
-
-                        <!-- Card 5 -->
-                        <div
-                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
-                            <p class="text-slate-600 mb-6 leading-relaxed">"أهم شي عندي إن العميل يحس بالاهتمام. المساعد
-                                الذكي يسأل الأسئلة الصحيحة ويوجه العميل للمنتج المناسب"</p>
-                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
-                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">سارة القحطاني</h4>
-                                <p class="text-xs text-slate-400 mt-1">متجر عبايات أونلاين</p>
-                            </div>
-                        </div>
-
-                        <!-- Card 6 -->
-                        <div
-                            class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col items-center text-center">
-                            <p class="text-slate-600 mb-6 leading-relaxed">"صراحة استغربت من دقة الردود. يفهم حتى لو
-                                العميل كتب بالعامية السعودية ويرد بنفس الأسلوب. مريح جداً"</p>
-                            <div class="flex text-yellow-400 mb-4 text-lg gap-1">
-                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">فاطمة الدوسري</h4>
-                                <p class="text-xs text-slate-400 mt-1">مطعم وجبات صحية</p>
-                            </div>
+                            <a href="https://wa.me/yourwhatsappnumber" target="_blank" rel="noopener noreferrer"
+                                class="block w-full py-4 text-center text-lg font-bold rounded-xl transition-all duration-300 whitespace-nowrap cursor-pointer bg-slate-100 text-slate-700 hover:bg-slate-200">
+                                اختر البداية
+                            </a>
                         </div>
                     </div>
-
-                    <!-- Statistics Box -->
-                    <div class="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100">
+                    <div
+                        class="relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden border-2 border-blue-600 transform md:-translate-y-4">
                         <div
-                            class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x md:divide-x-reverse divide-slate-100 text-center gap-8 md:gap-0">
-                            <div class="p-2">
-                                <span class="block text-4xl md:text-5xl font-bold text-blue-600 mb-2"
-                                    dir="ltr">+2000</span>
-                                <span class="text-slate-500 font-medium text-lg">عميل</span>
+                            class="absolute top-0 left-0 right-0 bg-blue-600 text-white text-center py-2 font-bold text-sm tracking-wide">
+                            الأكثر طلبًا ⭐</div>
+                        <div class="p-8 pt-12">
+                            <div class="text-center mb-8">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-2">التوسع</h3>
+                                <p class="text-base text-slate-500 mb-6">للحجم الكبير والشركات</p>
+                                <div class="mb-6"><span class="text-4xl font-bold text-slate-900">$79</span><span
+                                        class="text-lg text-slate-500 mr-2">/ شهرياً</span></div>
+                                <div class="bg-blue-50 rounded-xl p-3 text-blue-700 font-medium text-sm">
+                                    مثالي لـ: العقارات، السفر، الوكالات
+                                </div>
                             </div>
-                            <div class="p-2">
-                                <span class="block text-4xl md:text-5xl font-bold text-lime-500 mb-2"
-                                    dir="ltr">95%</span>
-                                <span class="text-slate-500 font-medium text-lg">معدل الرضا</span>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1"><i
+                                            class="ri-check-line text-xl text-blue-600"></i></div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-slate-800">رصيد رسائل مضمن</p>
+                                        <p class="text-xs text-slate-500">2,000 رسالة</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1"><i
+                                            class="ri-check-line text-xl text-blue-600"></i></div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-slate-800">رسوم الإعداد</p>
+                                        <p class="text-xs text-slate-500">$100 لمرة واحدة</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1"><i
+                                            class="ri-check-line text-xl text-blue-600"></i></div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-slate-800">قاعدة معرفية متقدمة</p>
+                                        <p class="text-xs text-slate-500">5 ملفات PDF</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="p-2">
-                                <span class="block text-4xl md:text-5xl font-bold text-slate-800 mb-2"
-                                    dir="ltr">24/7</span>
-                                <span class="text-slate-500 font-medium text-lg">دعم متواصل</span>
-                            </div>
+                            <a href="https://wa.me/yourwhatsappnumber" target="_blank" rel="noopener noreferrer"
+                                class="block w-full py-4 text-center text-lg font-bold rounded-xl transition-all duration-300 whitespace-nowrap cursor-pointer bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-blue-500/25">
+                                ابدأ الآن
+                            </a>
                         </div>
                     </div>
                 </div>
+                <div class="text-center mt-16">
+                    <p class="text-lg text-gray-600 mb-6">نقبل جميع طرق الدفع المحلية والعالمية</p>
+                    <div class="flex flex-wrap justify-center items-center gap-6">
+                        <div class="px-6 py-3 bg-gray-100 rounded-lg font-semibold text-gray-800">Kurimi</div>
+                        <div class="px-6 py-3 bg-gray-100 rounded-lg font-semibold text-gray-800">Jaib</div>
+                        <div class="px-6 py-3 bg-gray-100 rounded-lg font-semibold text-gray-800">USDT</div>
+                        <div class="px-6 py-3 bg-gray-100 rounded-lg font-semibold text-gray-800">نقداً</div>
+                    </div>
+                </div>
+            </div>
             </section>
-
-            <!-- Pricing Section -->
-            <section class="py-24 bg-white relative overflow-hidden" id="pricing">
+            <section id="how-it-works" class="py-24 bg-gradient-to-b from-gray-50 to-white">
                 <div class="max-w-7xl mx-auto px-6">
-                    <!-- Header -->
-                    <div class="text-center mb-10">
-                        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4">اختر الباقة المناسبة لك</h2>
-                        <p class="text-lg text-slate-500 mb-8">باقات مرنة ومتنوعة تناسب جميع أحجام الأعمال</p>
-
-                        <!-- Toggle -->
-                        <div class="flex items-center justify-center gap-4 mb-12">
-                            <span class="text-slate-500 font-medium">سنوياً <span
-                                    class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full mr-1">وفر
-                                    20%</span></span>
-                            <div
-                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-slate-200">
-                                <span
-                                    class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-                            </div>
-                            <span class="text-blue-600 font-bold">شهرياً</span>
-                        </div>
-                    </div>
-
-                    <!-- Pricing Grid -->
-                    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-
-                        <!-- Plan 1: Business (Business - الأعمال) -->
-                        <div
-                            class="bg-blue-50/30 rounded-3xl p-8 border border-slate-100 hover:shadow-lg transition-all text-center group">
-                            <div
-                                class="w-16 h-16 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-200">
-                                <i class="ri-building-line text-3xl text-white"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-slate-900 mb-2">الأعمال</h3>
-                            <p class="text-slate-500 mb-6 text-sm">للشركات المتوسطة والكبيرة</p>
-                            <div class="flex items-center justify-center gap-1 mb-2">
-                                <span class="text-slate-400 font-medium text-lg">$</span>
-                                <span class="text-5xl font-bold text-blue-600">400</span>
-                                <span class="text-slate-400 font-bold text-lg">USD</span>
-                            </div>
-                            <p class="text-xs text-slate-400 mb-2 line-through">≈ 1500 ر.س</p>
-                            <p class="text-slate-500 mb-8">شهرياً</p>
-
-                            <div class="space-y-4 mb-8 text-right">
-                                <div class="flex items-center justify-between text-slate-600 text-sm">
-                                    <div class="flex items-center gap-2"><i class="ri-chat-4-line text-slate-400"></i>
-                                        ردود الذكاء الاصطناعي</div>
-                                    <span class="font-bold text-blue-600">45,000</span>
-                                </div>
-                                <div class="flex items-center justify-between text-slate-600 text-sm">
-                                    <div class="flex items-center gap-2"><i class="ri-ticket-line text-slate-400"></i>
-                                        تذاكر الذكاء الاصطناعي</div>
-                                    <span class="font-bold text-blue-600">20,000</span>
-                                </div>
-                                <div class="flex items-center justify-between text-slate-600 text-sm">
-                                    <div class="flex items-center gap-2"><i class="ri-group-line text-slate-400"></i>
-                                        أعضاء الفريق</div>
-                                    <span class="font-bold text-blue-600">20</span>
-                                </div>
-                            </div>
-
-                            <button
-                                class="text-blue-600 font-medium text-sm flex items-center justify-center mx-auto mb-6 hover:text-blue-800 transition-colors">
-                                المزيد <i class="ri-arrow-down-s-line mr-1"></i>
-                            </button>
-
-                            <a href="#"
-                                class="block w-full py-3 rounded-xl border-2 border-slate-200 text-slate-700 font-bold hover:border-blue-600 hover:text-blue-600 transition-all bg-white">ابدأ
-                                الآن</a>
-                        </div>
-
-                        <!-- Plan 2: Growth (Growth - النمو) - Most Popular -->
-                        <div
-                            class="bg-white rounded-3xl p-8 border-2 border-blue-600 shadow-xl relative transform md:-translate-y-4 text-center z-10">
-                            <div
-                                class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-xs font-bold">
-                                الأكثر شعبية</div>
-
-                            <div
-                                class="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-200">
-                                <i class="ri-flashlight-fill text-3xl text-white"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-slate-900 mb-2">النمو</h3>
-                            <p class="text-slate-500 mb-6 text-sm">الأكثر شعبية للشركات المتنامية</p>
-                            <div class="flex items-center justify-center gap-1 mb-2">
-                                <span class="text-slate-400 font-medium text-lg">$</span>
-                                <span class="text-5xl font-bold text-blue-600">213</span>
-                                <span class="text-slate-400 font-bold text-lg">USD</span>
-                            </div>
-                            <p class="text-xs text-slate-400 mb-2 line-through">≈ 800 ر.س</p>
-                            <p class="text-slate-500 mb-8">شهرياً</p>
-
-                            <div class="space-y-4 mb-8 text-right">
-                                <div class="flex items-center justify-between text-slate-600 text-sm">
-                                    <div class="flex items-center gap-2"><i class="ri-chat-4-line text-slate-400"></i>
-                                        ردود الذكاء الاصطناعي</div>
-                                    <span class="font-bold text-blue-600">12,000</span>
-                                </div>
-                                <div class="flex items-center justify-between text-slate-600 text-sm">
-                                    <div class="flex items-center gap-2"><i class="ri-ticket-line text-slate-400"></i>
-                                        تذاكر الذكاء الاصطناعي</div>
-                                    <span class="font-bold text-blue-600">5,000</span>
-                                </div>
-                                <div class="flex items-center justify-between text-slate-600 text-sm">
-                                    <div class="flex items-center gap-2"><i class="ri-group-line text-slate-400"></i>
-                                        أعضاء الفريق</div>
-                                    <span class="font-bold text-blue-600">10</span>
-                                </div>
-                            </div>
-
-                            <button
-                                class="text-blue-600 font-medium text-sm flex items-center justify-center mx-auto mb-6 hover:text-blue-800 transition-colors">
-                                المزيد <i class="ri-arrow-down-s-line mr-1"></i>
-                            </button>
-
-                            <a href="#"
-                                class="block w-full py-3 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">ابدأ
-                                الآن</a>
-                        </div>
-
-                        <!-- Plan 3: Small Projects (Small Projects - المشاريع الصغيرة) -->
-                        <div
-                            class="bg-blue-50/30 rounded-3xl p-8 border border-slate-100 hover:shadow-lg transition-all text-center group">
-                            <div
-                                class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                                <!-- Fixed color according to image roughly, but image had blue star -->
-                                <i class="ri-star-line text-3xl text-blue-600"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-slate-900 mb-2">المشاريع الصغيرة</h3>
-                            <p class="text-slate-500 mb-6 text-sm">للشركات الناشئة</p>
-                            <div class="flex items-center justify-center gap-1 mb-2">
-                                <span class="text-slate-400 font-medium text-lg">$</span>
-                                <span class="text-5xl font-bold text-blue-600">80</span>
-                                <span class="text-slate-400 font-bold text-lg">USD</span>
-                            </div>
-                            <p class="text-xs text-slate-400 mb-2 line-through">≈ 299 ر.س</p>
-                            <p class="text-slate-500 mb-8">شهرياً</p>
-
-                            <div class="space-y-4 mb-8 text-right">
-                                <div class="flex items-center justify-between text-slate-600 text-sm">
-                                    <div class="flex items-center gap-2"><i class="ri-chat-4-line text-slate-400"></i>
-                                        ردود الذكاء الاصطناعي</div>
-                                    <span class="font-bold text-blue-600">2,500</span>
-                                </div>
-                                <div class="flex items-center justify-between text-slate-600 text-sm">
-                                    <div class="flex items-center gap-2"><i class="ri-ticket-line text-slate-400"></i>
-                                        تذاكر الذكاء الاصطناعي</div>
-                                    <span class="font-bold text-blue-600">750</span>
-                                </div>
-                                <div class="flex items-center justify-between text-slate-600 text-sm">
-                                    <div class="flex items-center gap-2"><i class="ri-group-line text-slate-400"></i>
-                                        أعضاء الفريق</div>
-                                    <span class="font-bold text-blue-600">2</span>
-                                </div>
-                            </div>
-
-                            <button
-                                class="text-blue-600 font-medium text-sm flex items-center justify-center mx-auto mb-6 hover:text-blue-800 transition-colors">
-                                المزيد <i class="ri-arrow-down-s-line mr-1"></i>
-                            </button>
-
-                            <a href="#"
-                                class="block w-full py-3 rounded-xl border-2 border-slate-200 text-slate-700 font-bold hover:border-blue-600 hover:text-blue-600 transition-all bg-white">ابدأ
-                                الآن</a>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-            <div class="text-center mt-16">
-                <p class="text-lg text-gray-600 mb-6">نقبل جميع طرق الدفع المحلية والعالمية</p>
-                <div class="flex flex-wrap justify-center items-center gap-6">
-                    <div class="px-6 py-3 bg-gray-100 rounded-lg font-semibold text-gray-800">Kurimi</div>
-                    <div class="px-6 py-3 bg-gray-100 rounded-lg font-semibold text-gray-800">Jaib</div>
-                    <div class="px-6 py-3 bg-gray-100 rounded-lg font-semibold text-gray-800">USDT</div>
-                    <div class="px-6 py-3 bg-gray-100 rounded-lg font-semibold text-gray-800">نقداً</div>
-                </div>
-            </div>
-        </div>
-        </section>
-        <section id="how-it-works" class="py-24 bg-gradient-to-b from-gray-50 to-white">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-12 md:mb-20">
-                    <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4 md:mb-6">كيف يعمل؟ في 2 خطوتين
-                        بسيطة
-                    </h2>
-                    <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">نجعل الأمر سهلاً عليك. لا حاجة
-                        لخبرة تقنية
-                    </p>
-                </div>
-                <div class="space-y-20">
-                    <div class="flex flex-col md:flex-row items-center gap-12">
-                        <div class="flex-1 w-full">
-                            <div class="relative rounded-3xl overflow-hidden shadow-2xl group border border-slate-200">
-                                <div class="w-full h-96"><img alt="أرسل لنا بياناتك"
-                                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                                        src="assets/1.jpg">
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                            </div>
-                        </div>
-                        <div class="flex-1 w-full">
-                            <div class="max-w-xl">
-                                <div class="inline-flex items-center gap-4 mb-6">
-                                    <div
-                                        class="w-20 h-20 flex items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full shadow-lg">
-                                        <span class="text-3xl font-bold text-white">1</span>
-                                    </div>
-                                    <div class="w-16 h-16 flex items-center justify-center bg-blue-50 rounded-full">
-                                        <i class="ri-folder-upload-line text-4xl text-blue-600"></i>
-                                    </div>
-                                </div>
-                                <h3 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4 md:mb-6">أرسل لنا
-                                    بياناتك</h3>
-                                <p class="text-lg md:text-xl text-slate-600 leading-relaxed">ببساطة قم برفع قائمة
-                                    الأسعار،
-                                    الكتالوج، أو الأسئلة الشائعة (PDF/Excel)</p>
-                                <div
-                                    class="mt-6 md:mt-8 h-1 w-20 md:w-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col md:flex-row-reverse items-center gap-12">
-                        <div class="flex-1 w-full">
-                            <div class="relative rounded-3xl overflow-hidden shadow-2xl group border border-slate-200">
-                                <div class="w-full h-96"><img alt="ندرب البوت الخاص بك"
-                                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                                        src="assets/2.jpg">
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                            </div>
-                        </div>
-                        <div class="flex-1 w-full">
-                            <div class="max-w-xl">
-                                <div class="inline-flex items-center gap-4 mb-6">
-                                    <div
-                                        class="w-20 h-20 flex items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full shadow-lg">
-                                        <span class="text-3xl font-bold text-white">2</span>
-                                    </div>
-                                    <div class="w-16 h-16 flex items-center justify-center bg-blue-50 rounded-full">
-                                        <i class="ri-robot-2-line text-4xl text-blue-600"></i>
-                                    </div>
-                                </div>
-                                <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">ندرب البوت الخاص بك
-                                </h3>
-                                <p class="text-xl text-slate-600 leading-relaxed">نقوم بتكوين الذكاء الاصطناعي
-                                    ليتحدث
-                                    بلهجتك المحددة ويتبع قواعد المبيعات الخاصة بك</p>
-                                <div class="mt-8 h-1 w-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-20"><a href="https://wa.me/yourwhatsappnumber" target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center justify-center gap-3 px-6 md:px-12 py-5 bg-blue-600 text-white text-lg md:text-xl font-bold rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer max-w-full"><i
-                            class="ri-whatsapp-line text-2xl md:text-3xl"></i><span>ابدأ الآن - الإعداد يستغرق 24
-                            ساعة فقط</span></a></div>
-            </div>
-        </section>
-        <section id="features" class="py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-20">
-                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">لماذا تختارنا؟</h2>
-                    <p class="text-xl text-slate-600 max-w-3xl mx-auto">نحن لسنا مجرد خدمة أخرى. نحن شريكك في النجاح
-                    </p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div
-                        class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
-                        <div
-                            class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-blue-50 rounded-xl group-hover:bg-blue-600 transition-all duration-300">
-                            <i
-                                class="ri-wallet-3-line text-4xl text-blue-600 group-hover:text-white transition-all duration-300"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">حرية الدفع</h3>
-                        <p class="text-slate-600 leading-relaxed text-center">نقبل Kurimi، Jaib، USDT،
-                            والنقد. لا حاجة لبطاقة ائتمان</p>
-                    </div>
-                    <div
-                        class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
-                        <div
-                            class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-indigo-50 rounded-xl group-hover:bg-indigo-600 transition-all duration-300">
-                            <i
-                                class="ri-shield-keyhole-line text-4xl text-indigo-600 group-hover:text-white transition-all duration-300"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">خصوصية البيانات</h3>
-                        <p class="text-slate-600 leading-relaxed text-center">بياناتك تبقى معزولة. لا نشارك
-                            قوائم عملائك أبداً</p>
-                    </div>
-                    <div
-                        class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
-                        <div
-                            class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-blue-50 rounded-xl group-hover:bg-blue-600 transition-all duration-300">
-                            <i
-                                class="ri-chat-voice-line text-4xl text-blue-600 group-hover:text-white transition-all duration-300"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">اللهجة الأصلية</h3>
-                        <p class="text-slate-600 leading-relaxed text-center">ذكاؤنا الاصطناعي يفهم اللهجة
-                            "اليمنية" و"الخليجية" و"وأي لهجة اخرى" بشكل مثالي</p>
-                    </div>
-                    <div
-                        class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
-                        <div
-                            class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-indigo-50 rounded-xl group-hover:bg-indigo-600 transition-all duration-300">
-                            <i
-                                class="ri-shield-check-line text-4xl text-indigo-600 group-hover:text-white transition-all duration-300"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">حماية من الحظر</h3>
-                        <p class="text-slate-600 leading-relaxed text-center">نستخدم API المؤسسات الرسمي
-                            الذي يحمي رقمك من الحظر على عكس الأدوات الرخيصة</p>
-                    </div>
-                    <div
-                        class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
-                        <div
-                            class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-blue-50 rounded-xl group-hover:bg-blue-600 transition-all duration-300">
-                            <i
-                                class="ri-customer-service-2-line text-4xl text-blue-600 group-hover:text-white transition-all duration-300"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">دعم فني متميز</h3>
-                        <p class="text-slate-600 leading-relaxed text-center">فريقنا متاح لمساعدتك عبر
-                            واتساب والبريد الإلكتروني</p>
-                    </div>
-                    <div
-                        class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
-                        <div
-                            class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-indigo-50 rounded-xl group-hover:bg-indigo-600 transition-all duration-300">
-                            <i
-                                class="ri-dashboard-line text-4xl text-indigo-600 group-hover:text-white transition-all duration-300"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">لوحة تحكم خاصة</h3>
-                        <p class="text-slate-600 leading-relaxed text-center">شاهد كل محادثة وتدخل متى تريد
-                            من خلال لوحة التحكم الخاصة بك</p>
-                    </div>
-                </div>
-                <div class="mt-20 text-center bg-blue-50 rounded-3xl p-6 md:p-12 border border-blue-100">
-                    <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">جاهز لتحويل محادثاتك إلى آلة
-                        مبيعات؟
-                    </h3>
-                    <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto">انضم إلى مئات الشركات التي
-                        تستخدم مساعدك
-                        الذكي لزيادة مبيعاتها</p><a href="https://wa.me/yourwhatsappnumber" target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center justify-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-blue-600 text-white text-lg md:text-xl font-bold rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer"><i
-                            class="ri-whatsapp-line text-2xl md:text-3xl"></i>تواصل معنا الآن</a>
-                </div>
-            </div>
-        </section>
-        <section class="py-24 bg-gradient-to-b from-white to-slate-50">
-            <div class="max-w-4xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">الأسئلة الشائعة</h2>
-                    <p class="text-xl text-slate-600">إجابات على الأسئلة الأكثر شيوعاً</p>
-                </div>
-                <div class="space-y-4">
-                    <div
-                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
-                        <button
-                            class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
-                            <h3 class="text-lg font-bold text-slate-900 flex-1">هل سيتم حظر رقمي؟</h3>
-                            <div
-                                class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 rotate-180">
-                                <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
-                            </div>
-                        </button>
-                        <div class="overflow-hidden transition-all duration-300 max-h-96">
-                            <div class="px-8 pb-6 pt-2">
-                                <p class="text-base text-slate-600 leading-relaxed">لا. نحن نستخدم API المؤسسات
-                                    الرسمي،
-                                    والذي يحمي رقمك من الحظر على عكس الأدوات الرخيصة. رقمك آمن تماماً معنا.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
-                        <button
-                            class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
-                            <h3 class="text-lg font-bold text-slate-900 flex-1">ماذا يحدث إذا لم يعرف البوت الإجابة؟
-                            </h3>
-                            <div
-                                class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
-                                <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
-                            </div>
-                        </button>
-                        <div class="overflow-hidden transition-all duration-300 max-h-0">
-                            <div class="px-8 pb-6 pt-2">
-                                <p class="text-base text-slate-600 leading-relaxed">سيقول بأدب: "سأطلب من موظف بشري
-                                    الاتصال بك"، وسيخطرك فوراً. لن يترك البوت العميل بدون إجابة أبداً.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
-                        <button
-                            class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
-                            <h3 class="text-lg font-bold text-slate-900 flex-1">هل يمكنني رؤية المحادثات؟</h3>
-                            <div
-                                class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
-                                <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
-                            </div>
-                        </button>
-                        <div class="overflow-hidden transition-all duration-300 max-h-0">
-                            <div class="px-8 pb-6 pt-2">
-                                <p class="text-base text-slate-600 leading-relaxed">نعم. تحصل على لوحة تحكم خاصة
-                                    لرؤية
-                                    كل محادثة والتدخل متى تريد. لديك السيطرة الكاملة.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
-                        <button
-                            class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
-                            <h3 class="text-lg font-bold text-slate-900 flex-1">كم من الوقت يستغرق الإعداد؟</h3>
-                            <div
-                                class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
-                                <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
-                            </div>
-                        </button>
-                        <div class="overflow-hidden transition-all duration-300 max-h-0">
-                            <div class="px-8 pb-6 pt-2">
-                                <p class="text-base text-slate-600 leading-relaxed">عادة 24 ساعة فقط. بمجرد إرسال
-                                    بياناتك، نقوم بتكوين البوت واختباره، ثم نرسل لك رمز QR للاتصال.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
-                        <button
-                            class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
-                            <h3 class="text-lg font-bold text-slate-900 flex-1">هل يدعم اللغة العربية واللهجات
-                                المحلية؟</h3>
-                            <div
-                                class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
-                                <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
-                            </div>
-                        </button>
-                        <div class="overflow-hidden transition-all duration-300 max-h-0">
-                            <div class="px-8 pb-6 pt-2">
-                                <p class="text-base text-slate-600 leading-relaxed">نعم بالتأكيد! البوت مدرب خصيصاً
-                                    على
-                                    اللهجات اليمنية والسعودية والخليجية. يتحدث مثل موظف محلي حقيقي.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
-                        <button
-                            class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
-                            <h3 class="text-lg font-bold text-slate-900 flex-1">ماذا لو احتجت إلى تغيير الأسعار أو
-                                المنتجات؟</h3>
-                            <div
-                                class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
-                                <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
-                            </div>
-                        </button>
-                        <div class="overflow-hidden transition-all duration-300 max-h-0">
-                            <div class="px-8 pb-6 pt-2">
-                                <p class="text-base text-slate-600 leading-relaxed">ببساطة أرسل لنا الملف المحدث،
-                                    وسنقوم بتحديث قاعدة معرفة البوت خلال ساعات قليلة.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
-                        <button
-                            class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
-                            <h3 class="text-lg font-bold text-slate-900 flex-1">هل يمكن للبوت حجز المواعيد؟</h3>
-                            <div
-                                class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
-                                <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
-                            </div>
-                        </button>
-                        <div class="overflow-hidden transition-all duration-300 max-h-0">
-                            <div class="px-8 pb-6 pt-2">
-                                <p class="text-base text-slate-600 leading-relaxed">نعم! يمكن للبوت حجز المواعيد،
-                                    تأكيد
-                                    الحجوزات، وإرسال تذكيرات تلقائية للعملاء.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
-                        <button
-                            class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
-                            <h3 class="text-lg font-bold text-slate-900 flex-1">كيف أدفع؟ هل تقبلون طرق الدفع
-                                المحلية؟</h3>
-                            <div
-                                class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
-                                <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
-                            </div>
-                        </button>
-                        <div class="overflow-hidden transition-all duration-300 max-h-0">
-                            <div class="px-8 pb-6 pt-2">
-                                <p class="text-base text-slate-600 leading-relaxed">نعم! نقبل Kurimi، Jaib، USDT،
-                                    والدفع النقدي. لا حاجة لبطاقة ائتمان دولية.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-16 text-center bg-blue-50 rounded-2xl p-6 md:p-10 border border-blue-100">
-                    <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-4">لا تزال لديك أسئلة؟</h3>
-                    <p class="text-base md:text-lg text-slate-600 mb-6">تواصل معنا مباشرة عبر واتساب وسنجيب على جميع
-                        استفساراتك
-                    </p><a href="https://wa.me/yourwhatsappnumber" target="_blank" rel="noopener noreferrer"
-                        class="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 bg-blue-600 text-white text-base md:text-lg font-bold rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"><i
-                            class="ri-whatsapp-line text-xl md:text-2xl"></i>تحدث معنا الآن</a>
-                </div>
-            </div>
-        </section>
-        <footer class="bg-slate-900 text-white py-16">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="grid md:grid-cols-3 gap-12 mb-12">
-                    <div>
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="assets/logo.png" alt="Logo" class="h-10 w-auto brightness-0 invert">
-                            <span class="font-bold text-xl">مساعدك الذكي</span>
-                        </div>
-                        <p class="text-slate-400 leading-relaxed mb-6">نحول واتساب، فيسبوك، وإنستجرام إلى موظف
-                            مبيعات
-                            ذكي يعمل 24/7
-                            لخدمة عملائك</p>
-                        <div class="flex gap-4">
-                            <a href="#"
-                                class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-blue-600 rounded-full transition-all duration-300"><i
-                                    class="ri-whatsapp-line"></i></a>
-                            <a href="#"
-                                class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-blue-600 rounded-full transition-all duration-300"><i
-                                    class="ri-facebook-line"></i></a>
-                            <a href="#"
-                                class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-blue-600 rounded-full transition-all duration-300"><i
-                                    class="ri-instagram-line"></i></a>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-bold mb-4">روابط سريعة</h4>
-                        <ul class="space-y-3">
-                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">الرئيسية</a>
-                            </li>
-                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">الأسعار</a>
-                            </li>
-                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">كيف يعمل</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-bold mb-4">تواصل معنا</h4>
-                        <ul class="space-y-4">
-                            <li class="flex items-start gap-3"><i
-                                    class="ri-whatsapp-line text-xl flex-shrink-0 mt-1 text-slate-400"></i>
-                                <div>
-                                    <p class="text-xs text-slate-500 uppercase font-semibold">واتساب</p>
-                                    <a href="https://wa.me/yourwhatsappnumber"
-                                        class="text-white hover:text-blue-400 font-medium">+967 XXX XXX XXX</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="pt-8 border-t border-slate-800 text-sm">
-                    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p class="text-slate-500 text-center md:text-right">© 2025 مساعدك الذكي. جميع الحقوق محفوظة.
+                    <div class="text-center mb-12 md:mb-20">
+                        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4 md:mb-6">كيف يعمل؟ في 2 خطوتين
+                            بسيطة
+                        </h2>
+                        <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">نجعل الأمر سهلاً عليك. لا حاجة
+                            لخبرة تقنية
                         </p>
-                        <div class="flex gap-6">
-                            <a href="#" class="text-slate-500 hover:text-white transition-colors">سياسة الخصوصية</a>
-                            <a href="#" class="text-slate-500 hover:text-white transition-colors">شروط الاستخدام</a>
+                    </div>
+                    <div class="space-y-20">
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="flex-1 w-full">
+                                <div
+                                    class="relative rounded-3xl overflow-hidden shadow-2xl group border border-slate-200">
+                                    <div class="w-full h-96"><img alt="أرسل لنا بياناتك"
+                                            class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                            src="assets/1.jpg">
+                                    </div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                </div>
+                            </div>
+                            <div class="flex-1 w-full">
+                                <div class="max-w-xl">
+                                    <div class="inline-flex items-center gap-4 mb-6">
+                                        <div
+                                            class="w-20 h-20 flex items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full shadow-lg">
+                                            <span class="text-3xl font-bold text-white">1</span>
+                                        </div>
+                                        <div class="w-16 h-16 flex items-center justify-center bg-blue-50 rounded-full">
+                                            <i class="ri-folder-upload-line text-4xl text-blue-600"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4 md:mb-6">أرسل لنا
+                                        بياناتك</h3>
+                                    <p class="text-lg md:text-xl text-slate-600 leading-relaxed">ببساطة قم برفع قائمة
+                                        الأسعار،
+                                        الكتالوج، أو الأسئلة الشائعة (PDF/Excel)</p>
+                                    <div
+                                        class="mt-6 md:mt-8 h-1 w-20 md:w-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                            <div class="flex-1 w-full">
+                                <div
+                                    class="relative rounded-3xl overflow-hidden shadow-2xl group border border-slate-200">
+                                    <div class="w-full h-96"><img alt="ندرب البوت الخاص بك"
+                                            class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                            src="assets/2.jpg">
+                                    </div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                </div>
+                            </div>
+                            <div class="flex-1 w-full">
+                                <div class="max-w-xl">
+                                    <div class="inline-flex items-center gap-4 mb-6">
+                                        <div
+                                            class="w-20 h-20 flex items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full shadow-lg">
+                                            <span class="text-3xl font-bold text-white">2</span>
+                                        </div>
+                                        <div class="w-16 h-16 flex items-center justify-center bg-blue-50 rounded-full">
+                                            <i class="ri-robot-2-line text-4xl text-blue-600"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">ندرب البوت الخاص بك
+                                    </h3>
+                                    <p class="text-xl text-slate-600 leading-relaxed">نقوم بتكوين الذكاء الاصطناعي
+                                        ليتحدث
+                                        بلهجتك المحددة ويتبع قواعد المبيعات الخاصة بك</p>
+                                    <div
+                                        class="mt-8 h-1 w-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-20"><a href="https://wa.me/yourwhatsappnumber" target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center gap-3 px-6 md:px-12 py-5 bg-blue-600 text-white text-lg md:text-xl font-bold rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer max-w-full"><i
+                                class="ri-whatsapp-line text-2xl md:text-3xl"></i><span>ابدأ الآن - الإعداد يستغرق 24
+                                ساعة فقط</span></a></div>
+                </div>
+            </section>
+            <section id="features" class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="text-center mb-20">
+                        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">لماذا تختارنا؟</h2>
+                        <p class="text-xl text-slate-600 max-w-3xl mx-auto">نحن لسنا مجرد خدمة أخرى. نحن شريكك في النجاح
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div
+                            class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
+                            <div
+                                class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-blue-50 rounded-xl group-hover:bg-blue-600 transition-all duration-300">
+                                <i
+                                    class="ri-wallet-3-line text-4xl text-blue-600 group-hover:text-white transition-all duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">حرية الدفع</h3>
+                            <p class="text-slate-600 leading-relaxed text-center">نقبل Kurimi، Jaib، USDT،
+                                والنقد. لا حاجة لبطاقة ائتمان</p>
+                        </div>
+                        <div
+                            class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
+                            <div
+                                class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-indigo-50 rounded-xl group-hover:bg-indigo-600 transition-all duration-300">
+                                <i
+                                    class="ri-shield-keyhole-line text-4xl text-indigo-600 group-hover:text-white transition-all duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">خصوصية البيانات</h3>
+                            <p class="text-slate-600 leading-relaxed text-center">بياناتك تبقى معزولة. لا نشارك
+                                قوائم عملائك أبداً</p>
+                        </div>
+                        <div
+                            class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
+                            <div
+                                class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-blue-50 rounded-xl group-hover:bg-blue-600 transition-all duration-300">
+                                <i
+                                    class="ri-chat-voice-line text-4xl text-blue-600 group-hover:text-white transition-all duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">اللهجة الأصلية</h3>
+                            <p class="text-slate-600 leading-relaxed text-center">ذكاؤنا الاصطناعي يفهم اللهجة
+                                "اليمنية" و"الخليجية" و"وأي لهجة اخرى" بشكل مثالي</p>
+                        </div>
+                        <div
+                            class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
+                            <div
+                                class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-indigo-50 rounded-xl group-hover:bg-indigo-600 transition-all duration-300">
+                                <i
+                                    class="ri-shield-check-line text-4xl text-indigo-600 group-hover:text-white transition-all duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">حماية من الحظر</h3>
+                            <p class="text-slate-600 leading-relaxed text-center">نستخدم API المؤسسات الرسمي
+                                الذي يحمي رقمك من الحظر على عكس الأدوات الرخيصة</p>
+                        </div>
+                        <div
+                            class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
+                            <div
+                                class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-blue-50 rounded-xl group-hover:bg-blue-600 transition-all duration-300">
+                                <i
+                                    class="ri-customer-service-2-line text-4xl text-blue-600 group-hover:text-white transition-all duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">دعم فني متميز</h3>
+                            <p class="text-slate-600 leading-relaxed text-center">فريقنا متاح لمساعدتك عبر
+                                واتساب والبريد الإلكتروني</p>
+                        </div>
+                        <div
+                            class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
+                            <div
+                                class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-indigo-50 rounded-xl group-hover:bg-indigo-600 transition-all duration-300">
+                                <i
+                                    class="ri-dashboard-line text-4xl text-indigo-600 group-hover:text-white transition-all duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">لوحة تحكم خاصة</h3>
+                            <p class="text-slate-600 leading-relaxed text-center">شاهد كل محادثة وتدخل متى تريد
+                                من خلال لوحة التحكم الخاصة بك</p>
+                        </div>
+                    </div>
+                    <div class="mt-20 text-center bg-blue-50 rounded-3xl p-6 md:p-12 border border-blue-100">
+                        <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">جاهز لتحويل محادثاتك إلى آلة
+                            مبيعات؟
+                        </h3>
+                        <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto">انضم إلى مئات الشركات التي
+                            تستخدم مساعدك
+                            الذكي لزيادة مبيعاتها</p><a href="https://wa.me/yourwhatsappnumber" target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-blue-600 text-white text-lg md:text-xl font-bold rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer"><i
+                                class="ri-whatsapp-line text-2xl md:text-3xl"></i>تواصل معنا الآن</a>
+                    </div>
+                </div>
+            </section>
+            <section class="py-24 bg-gradient-to-b from-white to-slate-50">
+                <div class="max-w-4xl mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">الأسئلة الشائعة</h2>
+                        <p class="text-xl text-slate-600">إجابات على الأسئلة الأكثر شيوعاً</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div
+                            class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
+                            <button
+                                class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
+                                <h3 class="text-lg font-bold text-slate-900 flex-1">هل سيتم حظر رقمي؟</h3>
+                                <div
+                                    class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 rotate-180">
+                                    <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
+                                </div>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 max-h-96">
+                                <div class="px-8 pb-6 pt-2">
+                                    <p class="text-base text-slate-600 leading-relaxed">لا. نحن نستخدم API المؤسسات
+                                        الرسمي،
+                                        والذي يحمي رقمك من الحظر على عكس الأدوات الرخيصة. رقمك آمن تماماً معنا.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
+                            <button
+                                class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
+                                <h3 class="text-lg font-bold text-slate-900 flex-1">ماذا يحدث إذا لم يعرف البوت الإجابة؟
+                                </h3>
+                                <div
+                                    class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
+                                    <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
+                                </div>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 max-h-0">
+                                <div class="px-8 pb-6 pt-2">
+                                    <p class="text-base text-slate-600 leading-relaxed">سيقول بأدب: "سأطلب من موظف بشري
+                                        الاتصال بك"، وسيخطرك فوراً. لن يترك البوت العميل بدون إجابة أبداً.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
+                            <button
+                                class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
+                                <h3 class="text-lg font-bold text-slate-900 flex-1">هل يمكنني رؤية المحادثات؟</h3>
+                                <div
+                                    class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
+                                    <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
+                                </div>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 max-h-0">
+                                <div class="px-8 pb-6 pt-2">
+                                    <p class="text-base text-slate-600 leading-relaxed">نعم. تحصل على لوحة تحكم خاصة
+                                        لرؤية
+                                        كل محادثة والتدخل متى تريد. لديك السيطرة الكاملة.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
+                            <button
+                                class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
+                                <h3 class="text-lg font-bold text-slate-900 flex-1">كم من الوقت يستغرق الإعداد؟</h3>
+                                <div
+                                    class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
+                                    <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
+                                </div>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 max-h-0">
+                                <div class="px-8 pb-6 pt-2">
+                                    <p class="text-base text-slate-600 leading-relaxed">عادة 24 ساعة فقط. بمجرد إرسال
+                                        بياناتك، نقوم بتكوين البوت واختباره، ثم نرسل لك رمز QR للاتصال.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
+                            <button
+                                class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
+                                <h3 class="text-lg font-bold text-slate-900 flex-1">هل يدعم اللغة العربية واللهجات
+                                    المحلية؟</h3>
+                                <div
+                                    class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
+                                    <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
+                                </div>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 max-h-0">
+                                <div class="px-8 pb-6 pt-2">
+                                    <p class="text-base text-slate-600 leading-relaxed">نعم بالتأكيد! البوت مدرب خصيصاً
+                                        على
+                                        اللهجات اليمنية والسعودية والخليجية. يتحدث مثل موظف محلي حقيقي.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
+                            <button
+                                class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
+                                <h3 class="text-lg font-bold text-slate-900 flex-1">ماذا لو احتجت إلى تغيير الأسعار أو
+                                    المنتجات؟</h3>
+                                <div
+                                    class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
+                                    <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
+                                </div>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 max-h-0">
+                                <div class="px-8 pb-6 pt-2">
+                                    <p class="text-base text-slate-600 leading-relaxed">ببساطة أرسل لنا الملف المحدث،
+                                        وسنقوم بتحديث قاعدة معرفة البوت خلال ساعات قليلة.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
+                            <button
+                                class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
+                                <h3 class="text-lg font-bold text-slate-900 flex-1">هل يمكن للبوت حجز المواعيد؟</h3>
+                                <div
+                                    class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
+                                    <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
+                                </div>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 max-h-0">
+                                <div class="px-8 pb-6 pt-2">
+                                    <p class="text-base text-slate-600 leading-relaxed">نعم! يمكن للبوت حجز المواعيد،
+                                        تأكيد
+                                        الحجوزات، وإرسال تذكيرات تلقائية للعملاء.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200">
+                            <button
+                                class="w-full px-8 py-6 flex items-center justify-between gap-4 text-right hover:bg-slate-50 transition-colors duration-200 cursor-pointer">
+                                <h3 class="text-lg font-bold text-slate-900 flex-1">كيف أدفع؟ هل تقبلون طرق الدفع
+                                    المحلية؟</h3>
+                                <div
+                                    class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-blue-50 rounded-full transition-transform duration-300 ">
+                                    <i class="ri-arrow-down-s-line text-xl text-blue-600"></i>
+                                </div>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 max-h-0">
+                                <div class="px-8 pb-6 pt-2">
+                                    <p class="text-base text-slate-600 leading-relaxed">نعم! نقبل Kurimi، Jaib، USDT،
+                                        والدفع النقدي. لا حاجة لبطاقة ائتمان دولية.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-16 text-center bg-blue-50 rounded-2xl p-6 md:p-10 border border-blue-100">
+                        <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-4">لا تزال لديك أسئلة؟</h3>
+                        <p class="text-base md:text-lg text-slate-600 mb-6">تواصل معنا مباشرة عبر واتساب وسنجيب على جميع
+                            استفساراتك
+                        </p><a href="https://wa.me/yourwhatsappnumber" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 bg-blue-600 text-white text-base md:text-lg font-bold rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"><i
+                                class="ri-whatsapp-line text-xl md:text-2xl"></i>تحدث معنا الآن</a>
+                    </div>
+                </div>
+            </section>
+            <footer class="bg-slate-900 text-white py-16">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="grid md:grid-cols-3 gap-12 mb-12">
+                        <div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <img src="assets/logo.png" alt="Logo" class="h-10 w-auto brightness-0 invert">
+                                <span class="font-bold text-xl">مساعدك الذكي</span>
+                            </div>
+                            <p class="text-slate-400 leading-relaxed mb-6">نحول واتساب، فيسبوك، وإنستجرام إلى موظف
+                                مبيعات
+                                ذكي يعمل 24/7
+                                لخدمة عملائك</p>
+                            <div class="flex gap-4">
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-blue-600 rounded-full transition-all duration-300"><i
+                                        class="ri-whatsapp-line"></i></a>
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-blue-600 rounded-full transition-all duration-300"><i
+                                        class="ri-facebook-line"></i></a>
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-blue-600 rounded-full transition-all duration-300"><i
+                                        class="ri-instagram-line"></i></a>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold mb-4">روابط سريعة</h4>
+                            <ul class="space-y-3">
+                                <li><a href="#" class="text-slate-400 hover:text-white transition-colors">الرئيسية</a>
+                                </li>
+                                <li><a href="#" class="text-slate-400 hover:text-white transition-colors">الأسعار</a>
+                                </li>
+                                <li><a href="#" class="text-slate-400 hover:text-white transition-colors">كيف يعمل</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold mb-4">تواصل معنا</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3"><i
+                                        class="ri-whatsapp-line text-xl flex-shrink-0 mt-1 text-slate-400"></i>
+                                    <div>
+                                        <p class="text-xs text-slate-500 uppercase font-semibold">واتساب</p>
+                                        <a href="https://wa.me/yourwhatsappnumber"
+                                            class="text-white hover:text-blue-400 font-medium">+967 XXX XXX XXX</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pt-8 border-t border-slate-800 text-sm">
+                        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                            <p class="text-slate-500 text-center md:text-right">© 2025 مساعدك الذكي. جميع الحقوق محفوظة.
+                            </p>
+                            <div class="flex gap-6">
+                                <a href="#" class="text-slate-500 hover:text-white transition-colors">سياسة الخصوصية</a>
+                                <a href="#" class="text-slate-500 hover:text-white transition-colors">شروط الاستخدام</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-    </div>
+            </footer>
+        </div>
     </div>
 
 
