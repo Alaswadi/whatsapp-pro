@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - مساعدك الذكي</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <header class="topbar">
+        <div class="topbar-brand">
+            <img src="../assets/logo.png" alt="Logo">
+            <h1>مساعدك الذكي</h1>
+            <span>لوحة التحكم</span>
+        </div>
+        <div class="topbar-actions">
+            <div class="topbar-user">
+                <span id="usernameDisplay">admin</span>
+                <div class="avatar" id="userAvatar">A</div>
+            </div>
+            <button class="btn-icon" title="الموقع الرئيسي" onclick="window.open('/', '_blank')">
+                <i class="ri-external-link-line"></i>
+            </button>
+            <button class="btn-icon" title="تسجيل الخروج" onclick="logout()">
+                <i class="ri-logout-box-r-line"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label"><i class="ri-chat-3-line"></i> الجلسات النشطة</div>
+                <div class="stat-value accent" id="statSessions">—</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label"><i class="ri-robot-2-line"></i> النموذج الحالي</div>
+                <div class="stat-value" id="statModel" style="font-size:16px; margin-top:4px;">—</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label"><i class="ri-key-2-line"></i> حالة API</div>
+                <div class="stat-value" id="statApiStatus" style="font-size:16px; margin-top:4px;">—</div>
+            </div>
+        </div>
+
+        <!-- API Key Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div>
+                    <div class="section-title"><i class="ri-key-2-line"></i> مفتاح OpenRouter API</div>
+                    <div class="section-subtitle">مفتاح الوصول لخدمة الذكاء الاصطناعي</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>API Key</label>
+                <input type="password" class="input-field mono" id="apiKeyInput"
+                    placeholder="sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxx" dir="ltr">
+                <p class="hint">احصل على مفتاحك من <a href="https://openrouter.ai/keys" target="_blank"
+                        style="color: var(--accent);">openrouter.ai/keys</a></p>
+            </div>
+            <button class="btn btn-primary" onclick="saveApiKey()">
+                <i class="ri-save-line"></i> حفظ المفتاح
+            </button>
+        </div>
+
+        <!-- AI Model Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div>
+                    <div class="section-title"><i class="ri-robot-2-line"></i> نموذج الذكاء الاصطناعي</div>
+                    <div class="section-subtitle">اختر النموذج المناسب لاحتياجاتك</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>النموذج</label>
+                <select class="input-field" id="modelSelect">
+                    <optgroup label="OpenAI">
+                        <option value="openai/gpt-4o">GPT-4o</option>
+                        <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
+                        <option value="openai/gpt-4.1">GPT-4.1</option>
+                        <option value="openai/gpt-4.1-mini">GPT-4.1 Mini</option>
+                        <option value="openai/gpt-4.1-nano">GPT-4.1 Nano</option>
+                        <option value="openai/gpt-oss-120b">GPT-OSS 120B</option>
+                    </optgroup>
+                    <optgroup label="Anthropic">
+                        <option value="anthropic/claude-sonnet-4">Claude Sonnet 4</option>
+                        <option value="anthropic/claude-3.5-sonnet">Claude 3.5 Sonnet</option>
+                        <option value="anthropic/claude-3.5-haiku">Claude 3.5 Haiku</option>
+                    </optgroup>
+                    <optgroup label="Google">
+                        <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+                        <option value="google/gemini-2.0-flash-001">Gemini 2.0 Flash</option>
+                        <option value="google/gemini-pro-1.5">Gemini Pro 1.5</option>
+                    </optgroup>
+                    <optgroup label="Meta">
+                        <option value="meta-llama/llama-4-maverick">Llama 4 Maverick</option>
+                        <option value="meta-llama/llama-3.3-70b-instruct">Llama 3.3 70B</option>
+                    </optgroup>
+                    <optgroup label="أخرى">
+                        <option value="deepseek/deepseek-chat-v3-0324">DeepSeek V3</option>
+                        <option value="deepseek/deepseek-r1">DeepSeek R1</option>
+                        <option value="qwen/qwen-2.5-72b-instruct">Qwen 2.5 72B</option>
+                        <option value="mistralai/mistral-large-2411">Mistral Large</option>
+                    </optgroup>
+                </select>
+                <p class="hint">كل نموذج له سعر وأداء مختلف. راجع <a href="https://openrouter.ai/models" target="_blank"
+                        style="color: var(--accent);">قائمة النماذج</a></p>
+            </div>
+            <div class="form-group">
+                <label>أو أدخل اسم نموذج مخصص</label>
+                <input type="text" class="input-field mono" id="customModel" placeholder="provider/model-name"
+                    dir="ltr">
+            </div>
+            <button class="btn btn-primary" onclick="saveModel()">
+                <i class="ri-save-line"></i> حفظ النموذج
+            </button>
+        </div>
+
+        <!-- System Prompt Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div>
+                    <div class="section-title"><i class="ri-file-text-line"></i> التعليمات النظامية (System Prompt)
+                    </div>
+                    <div class="section-subtitle">الأمر الذي يحدد شخصية وسلوك البوت</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>System Prompt</label>
+                <textarea class="input-field" id="systemPromptInput" placeholder="اكتب تعليمات البوت هنا..."
+                    rows="12"></textarea>
+                <p class="hint">يدعم تنسيق Markdown. كلما كانت التعليمات أوضح، كان أداء البوت أفضل.</p>
+            </div>
+            <button class="btn btn-primary" onclick="savePrompt()">
+                <i class="ri-save-line"></i> حفظ التعليمات
+            </button>
+        </div>
+
+        <!-- Change Password Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div>
+                    <div class="section-title"><i class="ri-lock-password-line"></i> تغيير كلمة المرور</div>
+                    <div class="section-subtitle">حافظ على أمان حسابك</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور الحالية</label>
+                <input type="password" class="input-field" id="currentPassword" placeholder="••••••••">
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور الجديدة</label>
+                <input type="password" class="input-field" id="newPassword" placeholder="••••••••">
+            </div>
+            <button class="btn btn-primary" onclick="changePassword()">
+                <i class="ri-key-line"></i> تغيير كلمة المرور
+            </button>
+        </div>
+    </main>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>
