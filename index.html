@@ -1320,7 +1320,10 @@
                 const faqItem = button.closest('.bg-white.rounded-2xl');
                 if (faqItem) {
                     const content = faqItem.querySelector('.overflow-hidden');
-                    const icon = faqItem.querySelector('.ri-arrow-down-s-line').parentElement;
+                    const iconElement = faqItem.querySelector('.ri-arrow-down-s-line');
+                    const icon = iconElement ? iconElement.parentElement : null;
+
+                    if (!icon) return;
 
                     const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px' ||
                         (content.classList.contains('max-h-96') && !content.style.maxHeight);

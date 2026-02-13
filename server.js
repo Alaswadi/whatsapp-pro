@@ -184,7 +184,7 @@ app.post('/api/chat', async (req, res) => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${settings.api_key}`,
                 'HTTP-Referer': 'https://mosaaedak.com',
-                'X-Title': 'مساعدك الذكي'
+                'X-Title': 'Mosaaedak AI'
             },
             body: JSON.stringify({
                 model: settings.model_name,
