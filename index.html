@@ -31,7 +31,9 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -1224,10 +1226,11 @@
                     bubble.className = 'bg-blue-600 text-white py-3 px-4 rounded-2xl rounded-tl-none shadow-md max-w-[85%]';
                     bubble.innerHTML = `<p>${text}</p><span class="text-[10px] text-blue-100 mt-1 block text-left opacity-80">${time}</span>`;
                 } else {
-                    bubble.className = 'bg-white border border-slate-200 text-slate-700 py-3 px-4 rounded-2xl rounded-tr-none shadow-sm max-w-[85%]';
-                    // Parse markdown-like links if present, basic generic regex for demo
-                    const linkedText = text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="text-blue-600 underline hover:text-blue-800">$1</a>');
-                    bubble.innerHTML = `<p>${linkedText}</p><span class="text-[10px] text-slate-400 mt-1 block">${time}</span>`;
+                    bubble.className = 'bg-white border border-slate-200 text-slate-700 py-3 px-4 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-left';
+                    // Parse markdown and sanitize
+                    const rawHtml = marked.parse(text);
+                    const cleanHtml = DOMPurify.sanitize(rawHtml);
+                    bubble.innerHTML = `<div class="prose prose-sm max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-nav:hidden">${cleanHtml}</div><span class="text-[10px] text-slate-400 mt-1 block text-right">${time}</span>`;
                 }
 
                 div.appendChild(bubble);
