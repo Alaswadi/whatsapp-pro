@@ -16,9 +16,6 @@ services:
       - JWT_SECRET=mosaaedak-secret-key-change-in-production
     depends_on:
       - db
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
 
   db:
     image: postgres:15-alpine
