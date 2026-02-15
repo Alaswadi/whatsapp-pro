@@ -1,114 +1,128 @@
-const Database = require('better-sqlite3');
+const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
-const path = require('path');
 
-const DB_PATH = path.join(__dirname, 'data.db');
+const pool = new Pool({
+    user: process.env.DB_USER || 'postgres',
+    host: process.env.DB_HOST || 'localhost',
+    database: process.env.DB_NAME || 'mosaaedak',
+    password: process.env.DB_PASS || 'postgres',
+    port: process.env.DB_PORT || 5432,
+});
 
-let db;
-
-function getDb() {
-    if (!db) {
-        db = new Database(DB_PATH);
-        db.pragma('journal_mode = WAL');
-        db.pragma('foreign_keys = ON');
-        initTables();
-    }
-    return db;
+async function getDb() {
+    return pool;
 }
 
-function initTables() {
-    db.exec(`
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE NOT NULL,
-            password_hash TEXT NOT NULL,
-            created_at TEXT DEFAULT (datetime('now'))
-        );
+async function initTables() {
+    try {
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS users (
+                id SERIAL PRIMARY KEY,
+                username TEXT UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
 
-        CREATE TABLE IF NOT EXISTS settings (
-            id INTEGER PRIMARY KEY CHECK (id = 1),
-            api_key TEXT DEFAULT '',
-            system_prompt TEXT DEFAULT '',
-            model_name TEXT DEFAULT 'openai/gpt-oss-120b',
-            updated_at TEXT DEFAULT (datetime('now'))
-        );
+            CREATE TABLE IF NOT EXISTS settings (
+                id INTEGER PRIMARY KEY CHECK (id = 1),
+                api_key TEXT DEFAULT '',
+                system_prompt TEXT DEFAULT '',
+                model_name TEXT DEFAULT 'openai/gpt-oss-120b',
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
 
-        CREATE TABLE IF NOT EXISTS chat_sessions (
-            session_id TEXT PRIMARY KEY,
-            messages TEXT DEFAULT '[]',
-            last_access TEXT DEFAULT (datetime('now'))
-        );
-    `);
+            CREATE TABLE IF NOT EXISTS chat_sessions (
+                session_id TEXT PRIMARY KEY,
+                messages TEXT DEFAULT '[]',
+                last_access TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        `);
 
-    // Seed default admin if no users exist
-    const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get();
-    if (userCount.count === 0) {
-        const hash = bcrypt.hashSync('admin123', 10);
-        db.prepare('INSERT INTO users (username, password_hash) VALUES (?, ?)').run('admin', hash);
-        console.log('📌 Default admin created: admin / admin123');
-    }
+        // Seed default admin if no users exist
+        const userCountResult = await pool.query('SELECT COUNT(*) as count FROM users');
+        if (parseInt(userCountResult.rows[0].count) === 0) {
+            const hash = bcrypt.hashSync('admin123', 10);
+            await pool.query('INSERT INTO users (username, password_hash) VALUES ($1, $2)', ['admin', hash]);
+            console.log('📌 Default admin created: admin / admin123');
+        }
 
-    // Seed default settings if not exists
-    const settingsCount = db.prepare('SELECT COUNT(*) as count FROM settings').get();
-    if (settingsCount.count === 0) {
-        const defaultPrompt = getDefaultSystemPrompt();
-        db.prepare('INSERT INTO settings (id, api_key, system_prompt, model_name) VALUES (1, ?, ?, ?)')
-            .run('', defaultPrompt, 'openai/gpt-oss-120b');
-        console.log('📌 Default settings created');
+        // Seed default settings if not exists
+        const settingsCountResult = await pool.query('SELECT COUNT(*) as count FROM settings');
+        if (parseInt(settingsCountResult.rows[0].count) === 0) {
+            const defaultPrompt = getDefaultSystemPrompt();
+            await pool.query('INSERT INTO settings (id, api_key, system_prompt, model_name) VALUES (1, $1, $2, $3)',
+                ['', defaultPrompt, 'openai/gpt-oss-120b']);
+            console.log('📌 Default settings created');
+        }
+    } catch (err) {
+        console.error('Error initializing tables:', err);
     }
 }
+
+// Initialize tables on startup
+initTables();
 
 // ─── User Operations ─────────────────────────────────────────
-function findUserByUsername(username) {
-    return getDb().prepare('SELECT * FROM users WHERE username = ?').get(username);
+async function findUserByUsername(username) {
+    const res = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+    return res.rows[0];
 }
 
-function updateUserPassword(userId, newPasswordHash) {
-    return getDb().prepare('UPDATE users SET password_hash = ? WHERE id = ?').run(newPasswordHash, userId);
+async function updateUserPassword(userId, newPasswordHash) {
+    await pool.query('UPDATE users SET password_hash = $1 WHERE id = $2', [newPasswordHash, userId]);
 }
 
 // ─── Settings Operations ─────────────────────────────────────
-function getSettings() {
-    return getDb().prepare('SELECT * FROM settings WHERE id = 1').get();
+async function getSettings() {
+    const res = await pool.query('SELECT * FROM settings WHERE id = 1');
+    return res.rows[0] || {};
 }
 
-function updateSettings({ api_key, system_prompt, model_name }) {
+async function updateSettings({ api_key, system_prompt, model_name }) {
     const updates = [];
     const values = [];
+    let counter = 1;
 
-    if (api_key !== undefined) { updates.push('api_key = ?'); values.push(api_key); }
-    if (system_prompt !== undefined) { updates.push('system_prompt = ?'); values.push(system_prompt); }
-    if (model_name !== undefined) { updates.push('model_name = ?'); values.push(model_name); }
+    if (api_key !== undefined) { updates.push(`api_key = $${counter++}`); values.push(api_key); }
+    if (system_prompt !== undefined) { updates.push(`system_prompt = $${counter++}`); values.push(system_prompt); }
+    if (model_name !== undefined) { updates.push(`model_name = $${counter++}`); values.push(model_name); }
 
     if (updates.length === 0) return;
 
-    updates.push("updated_at = datetime('now')");
+    // Add updated_at
+    updates.push(`updated_at = CURRENT_TIMESTAMP`);
+
     const sql = `UPDATE settings SET ${updates.join(', ')} WHERE id = 1`;
-    return getDb().prepare(sql).run(...values);
+    await pool.query(sql, values);
 }
 
 // ─── Session Operations ──────────────────────────────────────
-function getSession(sessionId) {
-    const row = getDb().prepare('SELECT * FROM chat_sessions WHERE session_id = ?').get(sessionId);
+async function getSession(sessionId) {
+    const res = await pool.query('SELECT * FROM chat_sessions WHERE session_id = $1', [sessionId]);
+    const row = res.rows[0];
     if (row) {
-        row.messages = JSON.parse(row.messages);
+        try {
+            row.messages = JSON.parse(row.messages);
+        } catch (e) {
+            row.messages = [];
+        }
     }
     return row;
 }
 
-function upsertSession(sessionId, messages) {
+async function upsertSession(sessionId, messages) {
     const json = JSON.stringify(messages);
-    getDb().prepare(`
+    const query = `
         INSERT INTO chat_sessions (session_id, messages, last_access)
-        VALUES (?, ?, datetime('now'))
-        ON CONFLICT(session_id) DO UPDATE SET messages = ?, last_access = datetime('now')
-    `).run(sessionId, json, json);
+        VALUES ($1, $2, CURRENT_TIMESTAMP)
+        ON CONFLICT(session_id) 
+        DO UPDATE SET messages = $2, last_access = CURRENT_TIMESTAMP
+    `;
+    await pool.query(query, [sessionId, json]);
 }
 
-function cleanOldSessions(maxAgeHours = 1) {
-    getDb().prepare(`
-        DELETE FROM chat_sessions WHERE last_access < datetime('now', ?)
-    `).run(`-${maxAgeHours} hours`);
+async function cleanOldSessions(maxAgeHours = 1) {
+    await pool.query(`DELETE FROM chat_sessions WHERE last_access < NOW() - INTERVAL '${maxAgeHours} hours'`);
 }
 
 // ─── Default System Prompt ───────────────────────────────────

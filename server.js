@@ -14,8 +14,8 @@ const JWT_SECRET = process.env.JWT_SECRET || 'mosaaedak-secret-key-change-in-pro
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 
-// Serve static files (but NOT the admin folder for unauthenticated users)
-app.use(express.static(path.join(__dirname), {
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public'), {
     index: 'index.html',
     extensions: ['html']
 }));
@@ -37,14 +37,14 @@ function authMiddleware(req, res, next) {
 }
 
 // ─── Auth Routes ─────────────────────────────────────────────
-app.post('/api/auth/login', (req, res) => {
+app.post('/api/auth/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         if (!username || !password) {
             return res.status(400).json({ error: 'اسم المستخدم وكلمة المرور مطلوبان' });
         }
 
-        const user = db.findUserByUsername(username);
+        const user = await db.findUserByUsername(username);
         if (!user || !bcrypt.compareSync(password, user.password_hash)) {
             return res.status(401).json({ error: 'اسم المستخدم أو كلمة المرور غير صحيحة' });
         }
@@ -62,20 +62,20 @@ app.post('/api/auth/login', (req, res) => {
     }
 });
 
-app.post('/api/auth/change-password', authMiddleware, (req, res) => {
+app.post('/api/auth/change-password', authMiddleware, async (req, res) => {
     try {
         const { currentPassword, newPassword } = req.body;
         if (!currentPassword || !newPassword) {
             return res.status(400).json({ error: 'كلمة المرور الحالية والجديدة مطلوبتان' });
         }
 
-        const user = db.findUserByUsername(req.user.username);
+        const user = await db.findUserByUsername(req.user.username);
         if (!bcrypt.compareSync(currentPassword, user.password_hash)) {
             return res.status(401).json({ error: 'كلمة المرور الحالية غير صحيحة' });
         }
 
         const hash = bcrypt.hashSync(newPassword, 10);
-        db.updateUserPassword(user.id, hash);
+        await db.updateUserPassword(user.id, hash);
         res.json({ message: 'تم تغيير كلمة المرور بنجاح' });
     } catch (error) {
         console.error('Change password error:', error);
@@ -88,9 +88,9 @@ app.get('/api/auth/me', authMiddleware, (req, res) => {
 });
 
 // ─── Settings Routes (Protected) ────────────────────────────
-app.get('/api/settings', authMiddleware, (req, res) => {
+app.get('/api/settings', authMiddleware, async (req, res) => {
     try {
-        const settings = db.getSettings();
+        const settings = await db.getSettings();
         // Mask API key for display
         const maskedKey = settings.api_key
             ? settings.api_key.substring(0, 8) + '••••••••' + settings.api_key.substring(settings.api_key.length - 4)
@@ -108,10 +108,10 @@ app.get('/api/settings', authMiddleware, (req, res) => {
     }
 });
 
-app.put('/api/settings', authMiddleware, (req, res) => {
+app.put('/api/settings', authMiddleware, async (req, res) => {
     try {
         const { api_key, system_prompt, model_name } = req.body;
-        db.updateSettings({ api_key, system_prompt, model_name });
+        await db.updateSettings({ api_key, system_prompt, model_name });
         res.json({ message: 'تم حفظ الإعدادات بنجاح' });
     } catch (error) {
         console.error('Update settings error:', error);
@@ -120,11 +120,12 @@ app.put('/api/settings', authMiddleware, (req, res) => {
 });
 
 // ─── Stats Route (Protected) ────────────────────────────────
-app.get('/api/stats', authMiddleware, (req, res) => {
+app.get('/api/stats', authMiddleware, async (req, res) => {
     try {
-        const dbConn = db.getDb();
-        const sessionCount = dbConn.prepare('SELECT COUNT(*) as count FROM chat_sessions').get().count;
-        const settings = db.getSettings();
+        const dbConn = await db.getDb();
+        const sessionCountResult = await dbConn.query('SELECT COUNT(*) as count FROM chat_sessions');
+        const sessionCount = sessionCountResult.rows[0].count;
+        const settings = await db.getSettings();
         res.json({
             active_sessions: sessionCount,
             model: settings.model_name,
@@ -140,8 +141,8 @@ app.get('/api/stats', authMiddleware, (req, res) => {
 const MAX_MESSAGES = 20;
 
 // Clean up expired sessions every 10 minutes
-setInterval(() => {
-    db.cleanOldSessions(1);
+setInterval(async () => {
+    await db.cleanOldSessions(1);
 }, 10 * 60 * 1000);
 
 // ─── Chat Endpoint ───────────────────────────────────────────
@@ -154,13 +155,13 @@ app.post('/api/chat', async (req, res) => {
         }
 
         // Load settings from DB
-        const settings = db.getSettings();
+        const settings = await db.getSettings();
         if (!settings.api_key) {
             return res.json({ output: 'عذراً، النظام غير مُكوّن بعد. يرجى التواصل مع المسؤول.' });
         }
 
         // Get or create session from DB
-        let session = db.getSession(sessionId);
+        let session = await db.getSession(sessionId);
         let messages = session ? session.messages : [];
 
         // Add user message to history
@@ -208,7 +209,8 @@ app.post('/api/chat', async (req, res) => {
         }
 
         // Save session to DB
-        db.upsertSession(sessionId, messages);
+        // Save session to DB
+        await db.upsertSession(sessionId, messages);
 
         res.json({ output: botReply });
 
