@@ -177,9 +177,13 @@
                                         <!-- Welcome Message -->
                                         <div class="flex justify-start">
                                             <div
-                                                class="bg-white border border-slate-200 text-slate-700 py-3 px-4 rounded-2xl rounded-tr-none shadow-sm max-w-[85%]">
-                                                <p>مرحباً بك! 👋<br>أنا مساعدك الذكي. كيف يمكنني مساعدتك اليوم؟</p>
-                                                <span class="text-[10px] text-slate-400 mt-1 block">الآن</span>
+                                                class="bg-white border border-slate-200 text-slate-700 py-3 px-4 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-right">
+                                                <div class="prose prose-sm max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-nav:hidden"
+                                                    dir="rtl">
+                                                    <p>مرحباً بك! 👋<br>أنا مساعدك الذكي. كيف يمكنني مساعدتك اليوم؟</p>
+                                                </div>
+                                                <span
+                                                    class="text-[10px] text-slate-400 mt-1 block text-left">الآن</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1226,11 +1230,11 @@
                     bubble.className = 'bg-blue-600 text-white py-3 px-4 rounded-2xl rounded-tl-none shadow-md max-w-[85%]';
                     bubble.innerHTML = `<p>${text}</p><span class="text-[10px] text-blue-100 mt-1 block text-left opacity-80">${time}</span>`;
                 } else {
-                    bubble.className = 'bg-white border border-slate-200 text-slate-700 py-3 px-4 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-left';
+                    bubble.className = 'bg-white border border-slate-200 text-slate-700 py-3 px-4 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-right';
                     // Parse markdown and sanitize
                     const rawHtml = marked.parse(text);
                     const cleanHtml = DOMPurify.sanitize(rawHtml);
-                    bubble.innerHTML = `<div class="prose prose-sm max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-nav:hidden">${cleanHtml}</div><span class="text-[10px] text-slate-400 mt-1 block text-right">${time}</span>`;
+                    bubble.innerHTML = `<div class="prose prose-sm max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-nav:hidden" dir="rtl">${cleanHtml}</div><span class="text-[10px] text-slate-400 mt-1 block text-left">${time}</span>`;
                 }
 
                 div.appendChild(bubble);
