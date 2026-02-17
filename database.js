@@ -56,6 +56,7 @@ async function initTables() {
         }
     } catch (err) {
         console.error('Error initializing tables:', err);
+        process.exit(1); // Crash so Docker restarts us
     }
 }
 
