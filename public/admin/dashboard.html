@@ -143,6 +143,42 @@
             </button>
         </div>
 
+        <!-- Twilio Integration Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div>
+                    <div class="section-title"><i class="ri-whatsapp-line"></i> إعدادات الربط مع Twilio (واتساب)</div>
+                    <div class="section-subtitle">إعدادات حساب Twilio لاستقبال وإرسال الرسائل</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Account SID</label>
+                <input type="text" class="input-field mono" id="twilioAccountSid" placeholder="ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" dir="ltr">
+            </div>
+            <div class="form-group">
+                <label>Auth Token</label>
+                <input type="password" class="input-field mono" id="twilioAuthToken" placeholder="••••••••" dir="ltr">
+                <p class="hint">اتركه فارغاً إذا كنت لا تريد تغييره</p>
+            </div>
+            <div class="form-group">
+                <label>رقم واتساب الخاص بك (Twilio Number)</label>
+                <input type="text" class="input-field mono" id="twilioPhoneNumber" placeholder="whatsapp:+1234567890" dir="ltr">
+                <p class="hint">الرقم الذي سيرسل منه البوت الرسائل للعملاء.</p>
+            </div>
+            <div class="form-group">
+                <label>رقم الدعم الفني (لتحويل المحادثات)</label>
+                <input type="text" class="input-field mono" id="supportAgentPhone" placeholder="whatsapp:+19876543210" dir="ltr">
+                <p class="hint">الرقم الذي سيتم تحويل العميل إليه عند طلب مساعدة بشرية (يتم تحديده بواسطة نموذج الذكاء الاصطناعي كـ HUMAN_HELP_NEEDED).</p>
+            </div>
+            <div class="form-group">
+                <label>رابط الـ Webhook (ضعه في إعدادات Twilio)</label>
+                <input type="text" class="input-field mono" id="twilioWebhookUrl" readonly dir="ltr">
+            </div>
+            <button class="btn btn-primary" onclick="saveTwilioSettings()">
+                <i class="ri-save-line"></i> حفظ إعدادات Twilio
+            </button>
+        </div>
+
         <!-- Change Password Section -->
         <div class="section-card">
             <div class="section-header">

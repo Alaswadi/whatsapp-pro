@@ -13,6 +13,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'mosaaedak-secret-key-change-in-pro
 // ─── Middleware ───────────────────────────────────────────────
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public'), {
@@ -100,7 +101,12 @@ app.get('/api/settings', authMiddleware, async (req, res) => {
             has_api_key: !!settings.api_key,
             system_prompt: settings.system_prompt,
             model_name: settings.model_name,
-            updated_at: settings.updated_at
+            updated_at: settings.updated_at,
+            twilio_account_sid: settings.twilio_account_sid || '',
+            twilio_auth_token: settings.twilio_auth_token ? '••••••••' : '',
+            has_twilio_auth_token: !!settings.twilio_auth_token,
+            twilio_phone_number: settings.twilio_phone_number || '',
+            support_agent_phone: settings.support_agent_phone || ''
         });
     } catch (error) {
         console.error('Get settings error:', error);
@@ -110,8 +116,13 @@ app.get('/api/settings', authMiddleware, async (req, res) => {
 
 app.put('/api/settings', authMiddleware, async (req, res) => {
     try {
-        const { api_key, system_prompt, model_name } = req.body;
-        await db.updateSettings({ api_key, system_prompt, model_name });
+        const { api_key, system_prompt, model_name, twilio_account_sid, twilio_auth_token, twilio_phone_number, support_agent_phone } = req.body;
+        // Don't overwrite auth token if hidden dots are passed
+        const updateData = { api_key, system_prompt, model_name, twilio_account_sid, twilio_phone_number, support_agent_phone };
+        if (twilio_auth_token && twilio_auth_token !== '••••••••') {
+            updateData.twilio_auth_token = twilio_auth_token;
+        }
+        await db.updateSettings(updateData);
         res.json({ message: 'تم حفظ الإعدادات بنجاح' });
     } catch (error) {
         console.error('Update settings error:', error);
@@ -217,6 +228,149 @@ app.post('/api/chat', async (req, res) => {
     } catch (error) {
         console.error('Chat endpoint error:', error);
         res.status(500).json({ output: 'عذراً، حدث خطأ في النظام. يرجى المحاولة مرة أخرى.' });
+    }
+});
+
+// ─── Twilio Webhook ─────────────────────────────────────────
+app.post('/api/twilio/webhook', async (req, res) => {
+    console.log('📩 Incoming Twilio Webhook Request');
+    try {
+        const twilioData = req.body;
+        console.log('📦 Webhook Payload:', JSON.stringify(twilioData, null, 2));
+
+        const from = twilioData.From; // e.g. whatsapp:+123456789
+        const to = twilioData.To; // your twilio number
+        const body = twilioData.Body;
+
+        if (!from || !body) {
+            console.error('❌ Invalid Webhook Payload: Missing From or Body');
+            return res.status(400).send('Bad Request');
+        }
+
+        const settings = await db.getSettings();
+        if (!settings.api_key || !settings.twilio_account_sid || !settings.twilio_auth_token) {
+            console.error('❌ Missing required settings for Twilio webhook:', {
+                has_api_key: !!settings.api_key,
+                has_sid: !!settings.twilio_account_sid,
+                has_token: !!settings.twilio_auth_token
+            });
+            return res.status(500).send('Server Error');
+        }
+
+        console.log(`🤖 Processing message from ${from}: "${body}"`);
+
+        let session = await db.getSession(from);
+        let messages = session ? session.messages : [];
+        messages.push({ role: 'user', content: body });
+
+        if (messages.length > MAX_MESSAGES) {
+            messages = messages.slice(-MAX_MESSAGES);
+        }
+
+        const apiMessages = [
+            { role: 'system', content: settings.system_prompt },
+            ...messages
+        ];
+
+        // Call OpenRouter
+        console.log('📡 Calling OpenRouter API...');
+        const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${settings.api_key}`,
+                'HTTP-Referer': 'https://mosaaedak.com',
+                'X-Title': 'Mosaaedak AI - Twilio Webhook'
+            },
+            body: JSON.stringify({
+                model: settings.model_name,
+                messages: apiMessages
+            })
+        });
+
+        let botReply = 'عذراً، حدث خطأ في النظام. يرجى المحاولة مرة أخرى.';
+        if (response.ok) {
+            const data = await response.json();
+            botReply = data.choices?.[0]?.message?.content || botReply;
+            console.log('✨ AI Bot Reply:', botReply);
+
+            messages.push({ role: 'assistant', content: botReply });
+            if (messages.length > MAX_MESSAGES) {
+                messages = messages.slice(-MAX_MESSAGES);
+            }
+            await db.upsertSession(from, messages);
+        } else {
+            const errorText = await response.text();
+            console.error('❌ OpenRouter API Error in webhook:', response.status, errorText);
+        }
+
+        const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${settings.twilio_account_sid}/Messages.json`;
+        const twilioAuth = Buffer.from(`${settings.twilio_account_sid}:${settings.twilio_auth_token}`).toString('base64');
+        const twilioHeaders = {
+            'Authorization': `Basic ${twilioAuth}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        };
+
+        if (botReply === 'HUMAN_HELP_NEEDED') {
+            console.log('👨‍💼 Human help requested. Forwarding...');
+            const supportPhone = settings.support_agent_phone || 'whatsapp:+17167553793';
+            // Forward to human
+            const fwdRes = await fetch(twilioUrl, {
+                method: 'POST',
+                headers: twilioHeaders,
+                body: new URLSearchParams({
+                    From: settings.twilio_phone_number || to,
+                    To: supportPhone,
+                    Body: `${body}\nهذا سؤال الزبون من ${from}`
+                })
+            });
+            console.log('✅ Forward to support status:', fwdRes.status);
+
+            // Reply to user
+            const replyRes = await fetch(twilioUrl, {
+                method: 'POST',
+                headers: twilioHeaders,
+                body: new URLSearchParams({
+                    From: settings.twilio_phone_number || to,
+                    To: from,
+                    Body: 'ولا يهمك يا غالي، الموضوع يحتاج مختص. برسل للأخ أحمد يتواصل معك حالاً..'
+                })
+            });
+            console.log('✅ Reply to user status:', replyRes.status);
+        } else {
+            console.log('📤 Sending AI reply to user...');
+            // Reply AI output to user
+            let messageBody = botReply.replace(/https?:\/\/[^\s]+/, "").trim();
+            if (!messageBody && (botReply.includes('http://') || botReply.includes('https://'))) {
+                messageBody = " "; // twilio requires some body usually, or mediaurl only.
+            }
+            const urlMatch = botReply.match(/https?:\/\/[^\s*]+/);
+
+            const params = new URLSearchParams({
+                From: settings.twilio_phone_number || to,
+                To: from,
+                Body: messageBody || botReply
+            });
+            if (urlMatch) {
+                console.log('🔗 Attaching MediaUrl:', urlMatch[0]);
+                params.append('MediaUrl', urlMatch[0]);
+            }
+
+            const sendRes = await fetch(twilioUrl, {
+                method: 'POST',
+                headers: twilioHeaders,
+                body: params
+            });
+            console.log('✅ Send reply to user status:', sendRes.status);
+            if (!sendRes.ok) {
+                console.error('❌ Twilio Send Error:', await sendRes.text());
+            }
+        }
+
+        res.status(200).send('OK');
+    } catch (error) {
+        console.error('🔥 Twilio Webhook Exception:', error);
+        res.status(500).send('Server Error');
     }
 });
 

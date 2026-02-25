@@ -31,6 +31,11 @@ async function initTables() {
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
 
+            ALTER TABLE settings ADD COLUMN IF NOT EXISTS twilio_account_sid TEXT DEFAULT '';
+            ALTER TABLE settings ADD COLUMN IF NOT EXISTS twilio_auth_token TEXT DEFAULT '';
+            ALTER TABLE settings ADD COLUMN IF NOT EXISTS twilio_phone_number TEXT DEFAULT '';
+            ALTER TABLE settings ADD COLUMN IF NOT EXISTS support_agent_phone TEXT DEFAULT '';
+
             CREATE TABLE IF NOT EXISTS chat_sessions (
                 session_id TEXT PRIMARY KEY,
                 messages TEXT DEFAULT '[]',
@@ -79,7 +84,7 @@ async function getSettings() {
     return res.rows[0] || {};
 }
 
-async function updateSettings({ api_key, system_prompt, model_name }) {
+async function updateSettings({ api_key, system_prompt, model_name, twilio_account_sid, twilio_auth_token, twilio_phone_number, support_agent_phone }) {
     const updates = [];
     const values = [];
     let counter = 1;
@@ -87,6 +92,10 @@ async function updateSettings({ api_key, system_prompt, model_name }) {
     if (api_key !== undefined) { updates.push(`api_key = $${counter++}`); values.push(api_key); }
     if (system_prompt !== undefined) { updates.push(`system_prompt = $${counter++}`); values.push(system_prompt); }
     if (model_name !== undefined) { updates.push(`model_name = $${counter++}`); values.push(model_name); }
+    if (twilio_account_sid !== undefined) { updates.push(`twilio_account_sid = $${counter++}`); values.push(twilio_account_sid); }
+    if (twilio_auth_token !== undefined) { updates.push(`twilio_auth_token = $${counter++}`); values.push(twilio_auth_token); }
+    if (twilio_phone_number !== undefined) { updates.push(`twilio_phone_number = $${counter++}`); values.push(twilio_phone_number); }
+    if (support_agent_phone !== undefined) { updates.push(`support_agent_phone = $${counter++}`); values.push(support_agent_phone); }
 
     if (updates.length === 0) return;
 

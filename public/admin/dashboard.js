@@ -100,6 +100,21 @@ async function loadDashboard() {
 
         // System Prompt
         document.getElementById('systemPromptInput').value = settings.system_prompt || '';
+
+        // Twilio
+        if (settings.twilio_account_sid) {
+            document.getElementById('twilioAccountSid').value = settings.twilio_account_sid;
+        }
+        if (settings.has_twilio_auth_token) {
+            document.getElementById('twilioAuthToken').placeholder = '••••••••';
+        }
+        if (settings.twilio_phone_number) {
+            document.getElementById('twilioPhoneNumber').value = settings.twilio_phone_number;
+        }
+        if (settings.support_agent_phone) {
+            document.getElementById('supportAgentPhone').value = settings.support_agent_phone;
+        }
+        document.getElementById('twilioWebhookUrl').value = window.location.origin + '/api/twilio/webhook';
     }
 }
 
@@ -151,6 +166,32 @@ async function savePrompt() {
     const result = await apiCall('/api/settings', 'PUT', { system_prompt: prompt });
     if (result) {
         showToast('تم حفظ التعليمات النظامية بنجاح');
+    }
+}
+
+// ─── Save Twilio Settings ──────────────────────────────────────
+async function saveTwilioSettings() {
+    const accountSid = document.getElementById('twilioAccountSid').value.trim();
+    const authToken = document.getElementById('twilioAuthToken').value.trim();
+    const phoneNumber = document.getElementById('twilioPhoneNumber').value.trim();
+    const supportPhone = document.getElementById('supportAgentPhone').value.trim();
+
+    const payload = {
+        twilio_account_sid: accountSid,
+        twilio_phone_number: phoneNumber,
+        support_agent_phone: supportPhone
+    };
+    if (authToken) {
+        payload.twilio_auth_token = authToken;
+    }
+
+    const result = await apiCall('/api/settings', 'PUT', payload);
+    if (result) {
+        showToast('تم حفظ إعدادات Twilio بنجاح');
+        document.getElementById('twilioAuthToken').value = '';
+        if (authToken) {
+            document.getElementById('twilioAuthToken').placeholder = '••••••••';
+        }
     }
 }
 
