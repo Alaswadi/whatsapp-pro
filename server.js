@@ -352,9 +352,16 @@ app.post('/api/twilio/webhook', async (req, res) => {
             }
             const urlMatch = botReply.match(/https?:\/\/[^\s*]+/);
 
+            let fromNumber = settings.twilio_phone_number || to;
+            let toNumber = from;
+
+            // Ensure 'whatsapp:' prefix is present for both (case-insensitive check)
+            if (!fromNumber.toLowerCase().startsWith('whatsapp:')) fromNumber = `whatsapp:${fromNumber}`;
+            if (!toNumber.toLowerCase().startsWith('whatsapp:')) toNumber = `whatsapp:${toNumber}`;
+
             const params = new URLSearchParams({
-                From: settings.twilio_phone_number || to,
-                To: from,
+                From: fromNumber,
+                To: toNumber,
                 Body: messageBody || botReply
             });
             if (urlMatch) {
